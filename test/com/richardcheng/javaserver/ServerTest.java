@@ -24,17 +24,24 @@ public class ServerTest {
 
         Server server = new Server(port);
         server.start();
-        server.close();
+        server.stop();
 
         Assert.assertTrue(true);
     }
 
     @Test
-    public void testServerRead() throws IOException {
+    public void testServerReadWrite() throws IOException {
         Server server = new Server(5000);
 
+        server.start();
         String reply = server.read();
+        server.write();
+        server.stop();
 
         Assert.assertNotNull(reply);
+    }
+
+    private void client() throws IOException {
+
     }
 }

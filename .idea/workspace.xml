@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22ad287f-f9a9-431e-afaa-08c495f801d9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/hamcrest-core-1.3.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/junit-4.12-extended-1.0.4.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/junit-4.12.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_bluecatcode_junit_junit_4_12_extended_1_0_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/JavaServer.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java" afterPath="$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java" afterPath="$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java" />
     </list>
     <ignored path="JavaServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,42 +23,32 @@
     <favorites_list name="JavaServer" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#438#439#0" expanded="true" />
-                    <element signature="e#471#472#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -92,8 +71,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/server.java" />
         <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/serverTest.java" />
-        <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java" />
         <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java" />
+        <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java" />
       </list>
     </option>
   </component>
@@ -105,8 +84,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="89" />
-    <option name="y" value="67" />
+    <option name="x" value="5" />
+    <option name="y" value="65" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -165,6 +144,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javaserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -195,7 +192,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerTest">
+  <component name="RunManager" selected="JUnit.ServerTest.testServerRead">
     <configuration default="false" name="ServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -624,11 +621,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ServerTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerStartStop" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerStart" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerRead" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerInitWithPort" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerRead" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerInitWithPort" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerStartStop" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ServerTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerStart" />
       </list>
     </recent_temporary>
   </component>
@@ -654,39 +651,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ServerTest - 2016.07.14 at 23h 35m 02s.xml">
-      <configuration name="ServerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ServerTest_testServerInitWithPort - 2016.07.14 at 23h 29m 55s.xml">
+    <history-entry file="ServerTest_testServerInitWithPort - 2016.07.14 at 23h 53m 52s.xml">
       <configuration name="ServerTest.testServerInitWithPort" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerRead - 2016.07.14 at 23h 28m 58s.xml">
+    <history-entry file="ServerTest_testServerRead - 2016.07.14 at 23h 56m 34s.xml">
       <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerRead - 2016.07.14 at 23h 29m 58s.xml">
+    <history-entry file="ServerTest_testServerRead - 2016.07.15 at 00h 04m 04s.xml">
       <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerStart - 2016.07.14 at 23h 29m 10s.xml">
-      <configuration name="ServerTest.testServerStart" configurationId="JUnit" />
+    <history-entry file="ServerTest_testServerRead - 2016.07.15 at 00h 05m 01s.xml">
+      <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerStart - 2016.07.14 at 23h 30m 02s.xml">
-      <configuration name="ServerTest.testServerStart" configurationId="JUnit" />
+    <history-entry file="ServerTest_testServerRead - 2016.07.15 at 00h 05m 35s.xml">
+      <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerStart - 2016.07.14 at 23h 30m 25s.xml">
-      <configuration name="ServerTest.testServerStart" configurationId="JUnit" />
+    <history-entry file="ServerTest_testServerRead - 2016.07.15 at 00h 23m 00s.xml">
+      <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerStart - 2016.07.14 at 23h 31m 48s.xml">
-      <configuration name="ServerTest.testServerStart" configurationId="JUnit" />
+    <history-entry file="ServerTest_testServerRead - 2016.07.15 at 00h 24m 05s.xml">
+      <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerStart - 2016.07.14 at 23h 33m 52s.xml">
-      <configuration name="ServerTest.testServerStart" configurationId="JUnit" />
+    <history-entry file="ServerTest_testServerRead - 2016.07.15 at 00h 24m 56s.xml">
+      <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerStartStop - 2016.07.14 at 23h 34m 58s.xml">
-      <configuration name="ServerTest.testServerStartStop" configurationId="JUnit" />
+    <history-entry file="ServerTest_testServerRead - 2016.07.15 at 00h 28m 51s.xml">
+      <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ServerTest_testServerRead - 2016.07.15 at 00h 29m 27s.xml">
+      <configuration name="ServerTest.testServerRead" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="89" y="67" width="1400" height="1000" extended-state="0" />
+    <frame x="5" y="65" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -743,8 +740,6 @@
           <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#438#439#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -765,8 +760,6 @@
           <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#438#439#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -781,24 +774,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+        <state relative-caret-position="465">
+          <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
+    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+        <state relative-caret-position="332">
+          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#438#439#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
           </folding>
         </state>
       </provider>

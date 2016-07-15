@@ -9,6 +9,7 @@ import java.io.*;
 public class Server {
     private int port;
     private ServerSocket serverSocket;
+    private Socket connectionSocket;
 
     public Server(int p) {
         port = p;
@@ -22,11 +23,20 @@ public class Server {
         serverSocket = new ServerSocket(port);
     }
 
-    public String read() {
+    public String read() throws IOException {
+        connectionSocket = serverSocket.accept();
+        BufferedReader fromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+        String requestMessageLine = fromClient.readLine();
+        System.out.println("Request: " + requestMessageLine);
         return "response";
     }
 
-    public void close() throws IOException {
+    public void write() throws IOException {
+        DataOutputStream toClient = new DataOutputStream(connectionSocket.getOutputStream());
+        toClient.writeBytes("HTTP/1.1 200 OK\n");
+    }
+
+    public void stop() throws IOException {
         serverSocket.close();
     }
 }
