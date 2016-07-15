@@ -6,7 +6,7 @@ import java.io.IOException;
  * Created by richardcheng on 7/15/16.
  */
 public class JavaServer {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Server server = new Server(5000);
 
         server.start();

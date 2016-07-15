@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class ServerTest {
     @Test
-    public void testServerInitWithPort() throws IOException {
+    public void testServerInitWithPort() {
         int expectedPort = 5000;
 
         Server server = new Server(expectedPort);
@@ -19,7 +19,7 @@ public class ServerTest {
     }
 
     @Test
-    public void testServerStartStop() throws IOException {
+    public void testServerStartStop() {
         int port = 5000;
 
         Server server = new Server(port);
@@ -30,7 +30,7 @@ public class ServerTest {
     }
 
     @Test
-    public void testServerReadWrite() throws IOException {
+    public void testServerReadWrite() {
         Server server = new Server(5000);
 
         server.start();

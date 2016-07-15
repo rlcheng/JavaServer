@@ -1,5 +1,7 @@
 package com.richardcheng.javaserver;
 
+import com.sun.xml.internal.ws.model.RuntimeModelerException;
+
 import java.net.*;
 import java.io.*;
 
@@ -19,23 +21,45 @@ public class Server {
         return port;
     }
 
-    public void start() throws IOException {
-        serverSocket = new ServerSocket(port);
+    public void start() {
+        try {
+            serverSocket = new ServerSocket(port);
+        }
+        catch(IOException e) {
+            throw new RuntimeModelerException(e);
+        }
     }
 
-    public String read() throws IOException {
-        connectionSocket = serverSocket.accept();
-        BufferedReader fromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-        String request = fromClient.readLine();
+    public String read() {
+        String request;
+        try {
+            connectionSocket = serverSocket.accept();
+            BufferedReader fromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+            request = fromClient.readLine();
+        }
+        catch(IOException e){
+            throw new RuntimeModelerException(e);
+        }
+
         return request;
     }
 
-    public void write() throws IOException {
-        DataOutputStream toClient = new DataOutputStream(connectionSocket.getOutputStream());
-        toClient.writeBytes("HTTP/1.1 200 OK\n");
+    public void write() {
+        try {
+            DataOutputStream toClient = new DataOutputStream(connectionSocket.getOutputStream());
+            toClient.writeBytes("HTTP/1.1 200 OK\n");
+        }
+        catch(IOException e) {
+            throw new RuntimeModelerException(e);
+        }
     }
 
-    public void stop() throws IOException {
-        serverSocket.close();
+    public void stop() {
+        try {
+            serverSocket.close();
+        }
+        catch(IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
