@@ -26,9 +26,8 @@ public class Server {
     public String read() throws IOException {
         connectionSocket = serverSocket.accept();
         BufferedReader fromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-        String requestMessageLine = fromClient.readLine();
-        System.out.println("Request: " + requestMessageLine);
-        return "response";
+        String request = fromClient.readLine();
+        return request;
     }
 
     public void write() throws IOException {

@@ -34,14 +34,10 @@ public class ServerTest {
         Server server = new Server(5000);
 
         server.start();
-        String reply = server.read();
+        String request = server.read();
         server.write();
         server.stop();
 
-        Assert.assertNotNull(reply);
-    }
-
-    private void client() throws IOException {
-
+        Assert.assertNotNull(request);
     }
 }
