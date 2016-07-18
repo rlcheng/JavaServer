@@ -15,19 +15,27 @@ public class Server {
 
     public Server() { port = 5000; }
 
-    public Server(int p) {
-        port = p;
-    }
+    public Server(int p) { port = p; }
 
-    public int getPort() {
-        return port;
-    }
+    public int getPort() { return port; }
 
     public void start() {
+        serverSocket = createSocket(port);
+    }
+
+    protected ServerSocket createSocket(int port) {
         try {
-            serverSocket = new ServerSocket(port);
+            return new ServerSocket(port);
         } catch (IOException e) {
-            throw new RuntimeModelerException(e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void stop() {
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -40,23 +48,6 @@ public class Server {
         return request;
     }
 
-    public void write() {
-        try {
-            DataOutputStream toClient = new DataOutputStream(connectionSocket.getOutputStream());
-            toClient.writeBytes("HTTP/1.1 200 OK\n");
-        } catch (IOException e) {
-            throw new RuntimeModelerException(e);
-        }
-    }
-
-    public void stop() {
-        try {
-            serverSocket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     protected void acceptConnection() {
         try {
             connectionSocket = serverSocket.accept();
@@ -67,8 +58,22 @@ public class Server {
 
     protected String getRequest() {
         try {
-            DataInputStream requestStream = new DataInputStream(connectionSocket.getInputStream());
-            return requestStream.toString();
+            BufferedReader requestMessage = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+            return requestMessage.readLine();
+        } catch (IOException e) {
+            throw new RuntimeModelerException(e);
+        }
+    }
+
+    public void write() {
+        String message = "HTTP/1.1 200 OK";
+        sendResponse(message);
+    }
+
+    protected void sendResponse(String message) {
+        try {
+            DataOutputStream response = new DataOutputStream(connectionSocket.getOutputStream());
+            response.writeBytes(message);
         } catch (IOException e) {
             throw new RuntimeModelerException(e);
         }

@@ -1,5 +1,6 @@
 package com.richardcheng.javaserver;
 
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import org.junit.Test;
 import org.junit.Assert;
 
@@ -31,24 +32,40 @@ public class ServerTest {
     }
 
     @Test
-    public void testServerRead() {
-        String expected = "GET";
+    public void testServerRead_GET_Request() {
+        String expectedRequest = "GET / HTTP/1.1";
         mockServer subject = new mockServer();
 
-        String request = subject.read();
+        String actualRequest = subject.read();
 
-        Assert.assertEquals(expected, request);
+        Assert.assertEquals(expectedRequest, actualRequest);
+    }
+
+    @Test
+    public void testServerWrite_200_Response() {
+        String expectedResponse = "HTTP/1.1 200 OK";
+
+        mockServer subject = new mockServer();
+
+        subject.write();
+
+        Assert.assertEquals(expectedResponse, subject.response);
     }
 
     private class mockServer extends Server{
         private Socket connectionSocket;
+        public String response;
 
         protected void acceptConnection() {
             connectionSocket = new Socket();
         }
 
         protected String getRequest() {
-            return "GET";
+            return "GET / HTTP/1.1";
+        }
+
+        protected void sendResponse(String message) {
+            response = message;
         }
     }
 }
