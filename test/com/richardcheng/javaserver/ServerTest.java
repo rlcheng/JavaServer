@@ -3,7 +3,8 @@ package com.richardcheng.javaserver;
 import org.junit.Test;
 import org.junit.Assert;
 
-import java.io.IOException;
+import java.net.*;
+import java.io.*;
 
 /**
  * Created by richardcheng on 7/14/16.
@@ -13,31 +14,41 @@ public class ServerTest {
     public void testServerInitWithPort() {
         int expectedPort = 5000;
 
-        Server server = new Server(expectedPort);
+        Server subject = new Server(expectedPort);
 
-        Assert.assertEquals(expectedPort, server.getPort());
+        Assert.assertEquals(expectedPort, subject.getPort());
     }
 
     @Test
     public void testServerStartStop() {
         int port = 5000;
 
-        Server server = new Server(port);
-        server.start();
-        server.stop();
+        Server subject = new Server(port);
+        subject.start();
+        subject.stop();
 
         Assert.assertTrue(true);
     }
 
     @Test
-    public void testServerReadWrite() {
-        Server server = new Server(5000);
+    public void testServerRead() {
+        String expected = "GET";
+        mockServer subject = new mockServer();
 
-        server.start();
-        String request = server.read();
-        server.write();
-        server.stop();
+        String request = subject.read();
 
-        Assert.assertNotNull(request);
+        Assert.assertEquals(expected, request);
+    }
+
+    private class mockServer extends Server{
+        private Socket connectionSocket;
+
+        protected void acceptConnection() {
+            connectionSocket = new Socket();
+        }
+
+        protected String getRequest() {
+            return "GET";
+        }
     }
 }

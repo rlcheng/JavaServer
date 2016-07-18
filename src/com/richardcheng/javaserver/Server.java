@@ -13,6 +13,8 @@ public class Server {
     private ServerSocket serverSocket;
     private Socket connectionSocket;
 
+    public Server() { port = 5000; }
+
     public Server(int p) {
         port = p;
     }
@@ -24,22 +26,16 @@ public class Server {
     public void start() {
         try {
             serverSocket = new ServerSocket(port);
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             throw new RuntimeModelerException(e);
         }
     }
 
     public String read() {
         String request;
-        try {
-            connectionSocket = serverSocket.accept();
-            BufferedReader fromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-            request = fromClient.readLine();
-        }
-        catch(IOException e){
-            throw new RuntimeModelerException(e);
-        }
+
+        acceptConnection();
+        request = getRequest();
 
         return request;
     }
@@ -48,8 +44,7 @@ public class Server {
         try {
             DataOutputStream toClient = new DataOutputStream(connectionSocket.getOutputStream());
             toClient.writeBytes("HTTP/1.1 200 OK\n");
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             throw new RuntimeModelerException(e);
         }
     }
@@ -57,9 +52,25 @@ public class Server {
     public void stop() {
         try {
             serverSocket.close();
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    protected void acceptConnection() {
+        try {
+            connectionSocket = serverSocket.accept();
+        } catch (IOException e) {
+            throw new RuntimeModelerException(e);
+        }
+    }
+
+    protected String getRequest() {
+        try {
+            DataInputStream requestStream = new DataInputStream(connectionSocket.getInputStream());
+            return requestStream.toString();
+        } catch (IOException e) {
+            throw new RuntimeModelerException(e);
         }
     }
 }
