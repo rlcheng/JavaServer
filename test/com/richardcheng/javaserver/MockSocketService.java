@@ -23,11 +23,11 @@ public class MockSocketService implements ISocketService {
         socketClosed = true;
     }
 
-    public String getRequest() {
+    public String read() {
         return request;
     }
 
-    public void sendResponse(String message) {
+    public void write(String message) {
         responseSent = true;
         responseMessage = message;
     }

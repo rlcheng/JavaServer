@@ -35,7 +35,7 @@ public class SocketService implements ISocketService {
         }
     }
 
-    public String getRequest() {
+    public String read() {
         try {
             BufferedReader requestMessage = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
             return requestMessage.readLine();
@@ -44,7 +44,7 @@ public class SocketService implements ISocketService {
         }
     }
 
-    public void sendResponse(String message) {
+    public void write(String message) {
         try {
             DataOutputStream response = new DataOutputStream(connectionSocket.getOutputStream());
             response.writeBytes(message);

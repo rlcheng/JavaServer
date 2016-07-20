@@ -6,13 +6,14 @@ package com.richardcheng.javaserver;
 public class JavaServer {
     public static void main(String[] args) {
         SocketService socket = new SocketService();
-        Controller controller = new Controller(socket);
+        Controller controller = new Controller();
+        Server server = new Server(socket, controller);
         int port = 5000;
 
-        controller.start(port);
-        String request = controller.read();
+        server.start(port);
+        String request = server.request();
         System.out.println("Request: " + request);
-        controller.write();
-        controller.stop();
+        server.response();
+        server.stop();
     }
 }

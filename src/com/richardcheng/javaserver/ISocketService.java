@@ -7,6 +7,6 @@ public interface ISocketService {
     void create(int port);
     void accept();
     void close();
-    String getRequest();
-    void sendResponse(String message);
+    String read();
+    void write(String message);
 }

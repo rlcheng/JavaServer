@@ -3,8 +3,9 @@ package com.richardcheng.javaserver;
 /**
  * Created by richardcheng on 7/19/16.
  */
-public class Controller implements IController {
+public class MockController implements IController {
+    @Override
     public String route(String request) {
-        return "HTTP/1.1 200 OK\n";
+        return "response";
     }
 }
