@@ -5,7 +5,7 @@ package com.richardcheng.javaserver;
  */
 public class MockController implements IController {
     @Override
-    public String route(String request) {
+    public String routeRequest(String request) {
         return "response";
     }
 }

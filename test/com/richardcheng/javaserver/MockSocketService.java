@@ -1,5 +1,7 @@
 package com.richardcheng.javaserver;
 
+import java.net.Socket;
+
 /**
  * Created by richardcheng on 7/18/16.
  */
@@ -15,19 +17,20 @@ public class MockSocketService implements ISocketService {
         socketCreated = true;
     }
 
-    public void accept() {
+    public Socket accept() {
         socketAccepted = true;
+        return new Socket();
     }
 
     public void close() {
         socketClosed = true;
     }
 
-    public String read() {
+    public String parse(Socket connectionSocket) {
         return request;
     }
 
-    public void write(String message) {
+    public void write(String message, Socket connectionSocket) {
         responseSent = true;
         responseMessage = message;
     }

@@ -14,7 +14,7 @@ public class ControllerTest {
         String request = "GET";
         Controller subject = new Controller();
 
-        String actualResponse = subject.route(request);
+        String actualResponse = subject.routeRequest(request);
 
         Assert.assertEquals(expectedResponse, actualResponse);
     }

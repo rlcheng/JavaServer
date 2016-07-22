@@ -8,7 +8,6 @@ import java.io.*;
  */
 public class SocketService implements ISocketService {
     private ServerSocket serverSocket;
-    private Socket connectionSocket;
 
     public void create(int port) {
         try {
@@ -18,9 +17,9 @@ public class SocketService implements ISocketService {
         }
     }
 
-    public void accept() {
+    public Socket accept() {
         try {
-            connectionSocket = serverSocket.accept();
+            return serverSocket.accept();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -35,7 +34,7 @@ public class SocketService implements ISocketService {
         }
     }
 
-    public String read() {
+    public String parse(Socket connectionSocket) {
         try {
             BufferedReader requestMessage = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
             return requestMessage.readLine();
@@ -44,7 +43,7 @@ public class SocketService implements ISocketService {
         }
     }
 
-    public void write(String message) {
+    public void write(String message, Socket connectionSocket) {
         try {
             DataOutputStream response = new DataOutputStream(connectionSocket.getOutputStream());
             response.writeBytes(message);

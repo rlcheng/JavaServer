@@ -1,35 +1,38 @@
 package com.richardcheng.javaserver;
 
+import java.net.Socket;
+
 /**
  * Created by richardcheng on 7/13/16.
  */
 public class Server {
-    private ISocketService socket;
+    private ISocketService socketService;
     private IController controller;
     private String request;
     private String response;
+    private Socket requestSocket;
 
-    public Server(ISocketService socket, IController controller) {
-        this.socket = socket;
+    public Server(ISocketService socketService, IController controller) {
+        this.socketService = socketService;
         this.controller = controller;
     }
 
     public void start(int port) {
-        socket.create(port);
-        socket.accept();
+        socketService.create(port);
+        requestSocket = socketService.accept();
     }
 
     public void stop() {
-        socket.close();
+        socketService.close();
     }
 
     public String request() {
-        request = socket.read();
+        request = socketService.parse(requestSocket);
         return request;
     }
 
     public void response() {
-        response = controller.route(request);
-        socket.write(response);
+        response = controller.routeRequest(request);
+        socketService.write(response, requestSocket);
     }
 }
