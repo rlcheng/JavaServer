@@ -7,16 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22ad287f-f9a9-431e-afaa-08c495f801d9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/richardcheng/javaserver/Controller.java" afterPath="$PROJECT_DIR$/src/com/richardcheng/javaserver/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/richardcheng/javaserver/IController.java" afterPath="$PROJECT_DIR$/src/com/richardcheng/javaserver/IController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/richardcheng/javaserver/ISocketService.java" afterPath="$PROJECT_DIR$/src/com/richardcheng/javaserver/ISocketService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java" afterPath="$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/richardcheng/javaserver/SocketService.java" afterPath="$PROJECT_DIR$/src/com/richardcheng/javaserver/SocketService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/richardcheng/javaserver/ControllerTest.java" afterPath="$PROJECT_DIR$/test/com/richardcheng/javaserver/ControllerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/richardcheng/javaserver/MockController.java" afterPath="$PROJECT_DIR$/test/com/richardcheng/javaserver/MockController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/richardcheng/javaserver/MockSocketService.java" afterPath="$PROJECT_DIR$/test/com/richardcheng/javaserver/MockSocketService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java" afterPath="$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/richardcheng/javaserver/HttpRequest.java" afterPath="$PROJECT_DIR$/src/com/richardcheng/javaserver/HttpRequest.java" />
     </list>
     <ignored path="JavaServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,126 +32,28 @@
     <favorites_list name="JavaServer" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="IController.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/IController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ControllerTest.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ControllerTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Controller.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#181#182#0" expanded="true" />
-                    <element signature="e#223#224#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ISocketService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/ISocketService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SocketService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/SocketService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="96">
-                  <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MockSocketService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/MockSocketService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="426">
-                  <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
-                  <folding>
-                    <element signature="e#358#359#0" expanded="true" />
-                    <element signature="e#394#395#0" expanded="true" />
-                    <element signature="e#517#518#0" expanded="true" />
-                    <element signature="e#552#553#0" expanded="true" />
-                    <element signature="e#604#605#0" expanded="true" />
-                    <element signature="e#634#635#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="456">
-                  <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MockController.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/MockController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#199#200#0" expanded="true" />
-                    <element signature="e#232#233#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="456">
-                  <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#613#614#0" expanded="true" />
-                    <element signature="e#650#651#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpRequest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/HttpRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -185,16 +78,18 @@
         <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/server.java" />
         <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/serverTest.java" />
         <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/JavaServerApp.java" />
-        <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/ControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/ISocketService.java" />
+        <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/MockSocketService.java" />
+        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/SocketService.java" />
+        <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/HttpRequestTest.java" />
+        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/IController.java" />
         <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/MockController.java" />
         <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/JavaServer.java" />
-        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/ISocketService.java" />
-        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/SocketService.java" />
         <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java" />
-        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/Controller.java" />
-        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/IController.java" />
-        <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/MockSocketService.java" />
         <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java" />
+        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/Controller.java" />
+        <option value="$PROJECT_DIR$/test/com/richardcheng/javaserver/ControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/com/richardcheng/javaserver/HttpRequest.java" />
       </list>
     </option>
   </component>
@@ -331,8 +226,8 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerTest.testServerResponse">
-    <configuration default="false" name="ServerTest.testServerResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.com.richardcheng.javaserver in JavaServer">
+    <configuration default="false" name="com.richardcheng.javaserver in JavaServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.richardcheng.javaserver.*" />
@@ -343,61 +238,9 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.richardcheng.javaserver" />
-      <option name="MAIN_CLASS_NAME" value="com.richardcheng.javaserver.ServerTest" />
-      <option name="METHOD_NAME" value="testServerResponse" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="ServerTest.testServerRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.richardcheng.javaserver.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="JavaServer" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.richardcheng.javaserver" />
-      <option name="MAIN_CLASS_NAME" value="com.richardcheng.javaserver.ServerTest" />
-      <option name="METHOD_NAME" value="testServerRequest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="ServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.richardcheng.javaserver.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="JavaServer" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.richardcheng.javaserver" />
-      <option name="MAIN_CLASS_NAME" value="com.richardcheng.javaserver.ServerTest" />
+      <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -408,6 +251,52 @@
       </option>
       <envs />
       <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="HttpRequestTest.testParseRequest_Form" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.richardcheng.javaserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="JavaServer" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.richardcheng.javaserver" />
+      <option name="MAIN_CLASS_NAME" value="com.richardcheng.javaserver.HttpRequestTest" />
+      <option name="METHOD_NAME" value="testParseRequest_Form" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="JavaServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.richardcheng.javaserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.richardcheng.javaserver.JavaServer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="JavaServer" />
+      <envs />
       <method />
     </configuration>
     <configuration default="false" name="ControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -436,7 +325,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="ServerTest.testServerStart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="ControllerTest.testControllerRouteResponse_NoRouteFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.richardcheng.javaserver.*" />
@@ -447,8 +336,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.richardcheng.javaserver" />
-      <option name="MAIN_CLASS_NAME" value="com.richardcheng.javaserver.ServerTest" />
-      <option name="METHOD_NAME" value="testServerStart" />
+      <option name="MAIN_CLASS_NAME" value="com.richardcheng.javaserver.ControllerTest" />
+      <option name="METHOD_NAME" value="testControllerRouteResponse_NoRouteFound" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -713,19 +602,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerResponse" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerRequest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ServerTest" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.com.richardcheng.javaserver in JavaServer" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.HttpRequestTest.testParseRequest_Form" />
+      <item index="2" class="java.lang.String" itemvalue="Application.JavaServer" />
       <item index="3" class="java.lang.String" itemvalue="JUnit.ControllerTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerStart" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.ControllerTest.testControllerRouteResponse_NoRouteFound" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerResponse" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ServerTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerStart" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ControllerTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.ServerTest.testServerRequest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.com.richardcheng.javaserver in JavaServer" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ControllerTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ControllerTest.testControllerRouteResponse_NoRouteFound" />
+        <item index="3" class="java.lang.String" itemvalue="Application.JavaServer" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.HttpRequestTest.testParseRequest_Form" />
       </list>
     </recent_temporary>
   </component>
@@ -751,35 +640,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ServerTest - 2016.07.22 at 09h 10m 13s.xml">
-      <configuration name="ServerTest" configurationId="JUnit" />
+    <history-entry file="ControllerTest - 2016.07.22 at 14h 06m 38s.xml">
+      <configuration name="ControllerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest - 2016.07.22 at 09h 13m 32s.xml">
-      <configuration name="ServerTest" configurationId="JUnit" />
+    <history-entry file="ControllerTest - 2016.07.22 at 14h 08m 37s.xml">
+      <configuration name="ControllerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest - 2016.07.22 at 09h 15m 04s.xml">
-      <configuration name="ServerTest" configurationId="JUnit" />
+    <history-entry file="ControllerTest_testControllerRouteResponse_NoRouteFound - 2016.07.22 at 14h 08m 32s.xml">
+      <configuration name="ControllerTest.testControllerRouteResponse_NoRouteFound" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerResponse - 2016.07.19 at 21h 47m 52s.xml">
+    <history-entry file="HttpRequestTest_testParseRequest_Form - 2016.07.22 at 13h 34m 07s.xml">
+      <configuration name="HttpRequestTest.testParseRequest_Form" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ServerTest_testServerResponse - 2016.07.22 at 13h 24m 21s.xml">
       <configuration name="ServerTest.testServerResponse" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerResponse - 2016.07.19 at 21h 48m 42s.xml">
-      <configuration name="ServerTest.testServerResponse" configurationId="JUnit" />
+    <history-entry file="com_richardcheng_javaserver_in_JavaServer - 2016.07.22 at 13h 32m 55s.xml">
+      <configuration name="com.richardcheng.javaserver in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerResponse - 2016.07.19 at 21h 49m 01s.xml">
-      <configuration name="ServerTest.testServerResponse" configurationId="JUnit" />
+    <history-entry file="com_richardcheng_javaserver_in_JavaServer - 2016.07.22 at 15h 02m 41s.xml">
+      <configuration name="com.richardcheng.javaserver in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerResponse - 2016.07.19 at 21h 50m 08s.xml">
-      <configuration name="ServerTest.testServerResponse" configurationId="JUnit" />
+    <history-entry file="com_richardcheng_javaserver_in_JavaServer - 2016.07.22 at 15h 03m 08s.xml">
+      <configuration name="com.richardcheng.javaserver in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerResponse - 2016.07.19 at 21h 52m 00s.xml">
-      <configuration name="ServerTest.testServerResponse" configurationId="JUnit" />
+    <history-entry file="com_richardcheng_javaserver_in_JavaServer - 2016.07.22 at 15h 05m 23s.xml">
+      <configuration name="com.richardcheng.javaserver in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_testServerResponse - 2016.07.22 at 09h 23m 54s.xml">
-      <configuration name="ServerTest.testServerResponse" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ServerTest_testServerStart - 2016.07.22 at 09h 13m 08s.xml">
-      <configuration name="ServerTest.testServerStart" configurationId="JUnit" />
+    <history-entry file="com_richardcheng_javaserver_in_JavaServer - 2016.07.22 at 15h 05m 50s.xml">
+      <configuration name="com.richardcheng.javaserver in JavaServer" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -826,7 +715,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -835,6 +724,22 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/MockController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/IController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -848,8 +753,10 @@
         <state relative-caret-position="90">
           <caret line="6" column="23" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="23" />
           <folding>
-            <element signature="e#181#182#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
+            <element signature="e#615#616#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -882,10 +789,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="44" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="44" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -902,8 +806,10 @@
         <state relative-caret-position="75">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
           <folding>
-            <element signature="e#181#182#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
+            <element signature="e#615#616#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -946,10 +852,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -975,10 +878,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1125">
           <caret line="80" column="1" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -996,10 +896,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1025,10 +922,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1054,10 +948,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1093,10 +984,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1114,10 +1002,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1135,10 +1020,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1146,10 +1028,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1167,10 +1046,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1184,6 +1060,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/org/junit/Assert.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/MockSocketService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/ISocketService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1192,12 +1084,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ControllerTest.java">
+    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/MockController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        <state relative-caret-position="105">
+          <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#204#205#0" expanded="true" />
+            <element signature="e#237#238#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1205,93 +1098,83 @@
     <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/IController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/SocketService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding>
-            <element signature="e#181#182#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="585">
+          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/org/junit/Assert.class">
+    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/HttpRequestTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+        <state relative-caret-position="6">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
           <folding>
-            <element signature="e#1888#1889#0" expanded="true" />
-            <element signature="e#1934#1935#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/JavaServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="285">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/MockController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding>
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#232#233#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/SocketService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-          <folding>
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/MockSocketService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
-          <folding>
-            <element signature="e#358#359#0" expanded="true" />
-            <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#517#518#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+        <state relative-caret-position="441">
+          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+          <folding>
+            <element signature="e#615#616#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/richardcheng/javaserver/ControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/richardcheng/javaserver/HttpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>

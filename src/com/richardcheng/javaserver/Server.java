@@ -8,7 +8,7 @@ import java.net.Socket;
 public class Server {
     private ISocketService socketService;
     private IController controller;
-    private String request;
+    private HttpRequest request;
     private String response;
     private Socket requestSocket;
 
@@ -26,8 +26,10 @@ public class Server {
         socketService.close();
     }
 
-    public String request() {
-        request = socketService.parse(requestSocket);
+    public HttpRequest request() {
+        String requestString = socketService.parse(requestSocket);
+        request = new HttpRequest();
+        request.parseRequest(requestString);
         return request;
     }
 

@@ -11,8 +11,8 @@ public class JavaServer {
         int port = 5000;
 
         server.start(port);
-        String request = server.request();
-        System.out.println("Request: " + request);
+        HttpRequest request = server.request();
+        System.out.println("Request: " + request.getMethod() + " " + request.getUri() + " " + request.getVersion());
         server.response();
         server.stop();
     }

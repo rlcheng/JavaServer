@@ -33,16 +33,18 @@ public class ServerTest {
 
     @Test
     public void testServerRequest() {
-        String expectedRequest = "GET / HTTP/1.1";
+        String requestString = "GET / HTTP/1.1";
+        HttpRequest expectedRequest = new HttpRequest();
+        expectedRequest.parseRequest(requestString);
         MockSocketService socketService = new MockSocketService();
-        socketService.request = expectedRequest;
+        socketService.request = requestString;
         MockController controller = new MockController();
         Server subject = new Server(socketService, controller);
-        String actualRequest;
+        HttpRequest actualRequest;
 
         actualRequest = subject.request();
 
-        Assert.assertEquals(expectedRequest, actualRequest);
+        Assert.assertEquals(expectedRequest.getMethod(), actualRequest.getMethod());
     }
 
     @Test

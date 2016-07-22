@@ -37,7 +37,8 @@ public class SocketService implements ISocketService {
     public String parse(Socket connectionSocket) {
         try {
             BufferedReader requestMessage = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-            return requestMessage.readLine();
+            String request = requestMessage.readLine();
+            return request;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
