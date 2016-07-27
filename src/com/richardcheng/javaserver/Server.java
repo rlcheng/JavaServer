@@ -27,7 +27,7 @@ public class Server {
     }
 
     public HttpRequest request() {
-        String requestString = socketService.parse(requestSocket);
+        String requestString = socketService.parseSocketMessage(requestSocket);
         request = new HttpRequest();
         request.parseRequest(requestString);
         return request;

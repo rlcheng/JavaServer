@@ -5,28 +5,17 @@ package com.richardcheng.javaserver;
  */
 public class Controller implements IController {
     public String routeRequest(HttpRequest request) {
-        String response;
+        String response = "";
+        String requestEndpoint = request.getEndpoint();
+        IEndpoint[] endpoints = { new RootEndpoint(), new FormEndpoint(), new InvalidEndpoint() };
 
-        String endpoint = request.getEndpoint();
-
-        if (endpoint.equals("root")) {
-            response = root(request.getMethod());
-        }
-        else if (endpoint.equals("form")) {
-            response = form(request.getMethod());
-        }
-        else {
-            response = "HTTP/1.1 404 NOT FOUND\n";
+        for(IEndpoint endpoint : endpoints) {
+            if (endpoint.match(requestEndpoint)) {
+                response = endpoint.route(request.getMethod());
+                break;
+            }
         }
 
         return response;
-    }
-
-    private String root(String method) {
-        return "HTTP/1.1 200 OK\n";
-    }
-
-    private String form(String method) {
-        return "HTTP/1.1 200 OK\n";
     }
 }

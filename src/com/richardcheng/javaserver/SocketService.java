@@ -34,7 +34,7 @@ public class SocketService implements ISocketService {
         }
     }
 
-    public String parse(Socket connectionSocket) {
+    public String parseSocketMessage(Socket connectionSocket) {
         try {
             BufferedReader requestMessage = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
             String request = requestMessage.readLine();

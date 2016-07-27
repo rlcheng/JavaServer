@@ -26,7 +26,7 @@ public class MockSocketService implements ISocketService {
         socketClosed = true;
     }
 
-    public String parse(Socket connectionSocket) {
+    public String parseSocketMessage(Socket connectionSocket) {
         return request;
     }
 

@@ -9,6 +9,6 @@ public interface ISocketService {
     void create(int port);
     Socket accept();
     void close();
-    String parse(Socket connectionSocket);
+    String parseSocketMessage(Socket connectionSocket);
     void write(String message, Socket connectionSocket);
 }
