@@ -1,8 +1,5 @@
 package com.richardcheng.javaserver;
 
-/**
- * Created by richardcheng on 7/22/16.
- */
 public class HttpRequest {
     private String method;
     private String uri;

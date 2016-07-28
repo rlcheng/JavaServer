@@ -3,9 +3,6 @@ package com.richardcheng.javaserver;
 import java.net.*;
 import java.io.*;
 
-/**
- * Created by richardcheng on 7/18/16.
- */
 public class SocketService implements ISocketService {
     private ServerSocket serverSocket;
 

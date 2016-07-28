@@ -2,9 +2,6 @@ package com.richardcheng.javaserver;
 
 import java.net.Socket;
 
-/**
- * Created by richardcheng on 7/13/16.
- */
 public class Server {
     private ISocketService socketService;
     private IController controller;
