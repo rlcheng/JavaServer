@@ -3,13 +3,13 @@ package com.richardcheng.javaserver;
 import java.net.Socket;
 
 public class Server {
-    private ISocketService socketService;
-    private IController controller;
+    private SocketService socketService;
+    private Controller controller;
     private HttpRequest request;
     private String response;
     private Socket requestSocket;
 
-    public Server(ISocketService socketService, IController controller) {
+    public Server(SocketService socketService, Controller controller) {
         this.socketService = socketService;
         this.controller = controller;
     }

@@ -2,7 +2,7 @@ package com.richardcheng.javaserver;
 
 import java.net.Socket;
 
-public class MockSocketService implements ISocketService {
+public class MockSocketService extends SocketService {
     boolean socketCreated;
     boolean socketAccepted;
     boolean socketClosed;

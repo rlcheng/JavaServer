@@ -3,7 +3,7 @@ package com.richardcheng.javaserver;
 import java.net.*;
 import java.io.*;
 
-public class SocketService implements ISocketService {
+public class SocketService {
     private ServerSocket serverSocket;
 
     public void create(int port) {

@@ -2,7 +2,7 @@ package com.richardcheng.javaserver;
 
 import com.richardcheng.endpoint.*;
 
-public class Controller implements IController {
+public class Controller {
     public String routeRequest(HttpRequest request) {
         String response = "";
         String requestEndpoint = request.getEndpoint();
