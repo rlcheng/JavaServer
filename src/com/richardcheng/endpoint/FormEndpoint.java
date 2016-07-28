@@ -1,11 +1,8 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.endpoint;
 
 public class FormEndpoint implements IEndpoint {
     public boolean match(String endpoint) {
-        if (endpoint.equals("form")) {
-            return true;
-        }
-        return false;
+        return endpoint.equals("form");
     }
 
     public String route(String httpMethod) {

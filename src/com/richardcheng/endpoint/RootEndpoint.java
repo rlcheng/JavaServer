@@ -1,11 +1,8 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.endpoint;
 
 public class RootEndpoint implements IEndpoint {
     public boolean match(String endpoint) {
-        if (endpoint.equals("root")) {
-            return true;
-        }
-        return false;
+        return endpoint.equals("root");
     }
 
     public String route(String httpMethod) {

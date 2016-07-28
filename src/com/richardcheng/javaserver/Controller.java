@@ -1,5 +1,7 @@
 package com.richardcheng.javaserver;
 
+import com.richardcheng.endpoint.*;
+
 public class Controller implements IController {
     public String routeRequest(HttpRequest request) {
         String response = "";

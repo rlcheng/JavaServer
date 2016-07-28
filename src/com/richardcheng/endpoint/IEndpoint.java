@@ -1,4 +1,4 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.endpoint;
 
 public interface IEndpoint {
     boolean match(String endpoint);

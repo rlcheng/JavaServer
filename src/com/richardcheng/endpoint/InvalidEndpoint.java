@@ -1,4 +1,4 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.endpoint;
 
 public class InvalidEndpoint implements IEndpoint {
     public boolean match(String endpoint) {
