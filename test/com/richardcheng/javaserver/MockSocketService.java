@@ -2,9 +2,6 @@ package com.richardcheng.javaserver;
 
 import java.net.Socket;
 
-/**
- * Created by richardcheng on 7/18/16.
- */
 public class MockSocketService implements ISocketService {
     boolean socketCreated;
     boolean socketAccepted;

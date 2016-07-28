@@ -3,9 +3,6 @@ package com.richardcheng.javaserver;
 import org.junit.Test;
 import org.junit.Assert;
 
-/**
- * Created by richardcheng on 7/14/16.
- */
 public class ServerTest {
     @Test
     public void testServerStart() {

@@ -3,9 +3,6 @@ package com.richardcheng.javaserver;
 import org.junit.Test;
 import org.junit.Assert;
 
-/**
- * Created by richardcheng on 7/19/16.
- */
 public class ControllerTest {
     @Test
     public void testControllerRouteResponse_Root() {
