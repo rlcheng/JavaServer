@@ -6,9 +6,7 @@ public class MockSocketService extends SocketService {
     boolean socketCreated;
     boolean socketAccepted;
     boolean socketClosed;
-    String request;
     boolean responseSent;
-    String responseMessage;
 
     public void create(int port) {
         socketCreated = true;
@@ -24,11 +22,10 @@ public class MockSocketService extends SocketService {
     }
 
     public String parseSocketMessage(Socket connectionSocket) {
-        return request;
+        return "message";
     }
 
     public void write(String message, Socket connectionSocket) {
         responseSent = true;
-        responseMessage = message;
     }
 }

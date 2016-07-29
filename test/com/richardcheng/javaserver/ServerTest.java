@@ -8,7 +8,8 @@ public class ServerTest {
     public void testServerStart() {
         MockSocketService socketService = new MockSocketService();
         MockController controller = new MockController();
-        Server subject = new Server(socketService, controller);
+        MockHttpRequest httpRequest = new MockHttpRequest();
+        Server subject = new Server(socketService, controller, httpRequest);
         int port = 5000;
 
         subject.start(port);
@@ -21,7 +22,8 @@ public class ServerTest {
     public void testServerStop() {
         MockSocketService socketService = new MockSocketService();
         MockController controller = new MockController();
-        Server subject = new Server(socketService, controller);
+        MockHttpRequest httpRequest = new MockHttpRequest();
+        Server subject = new Server(socketService, controller, httpRequest);
 
         subject.stop();
 
@@ -30,33 +32,25 @@ public class ServerTest {
 
     @Test
     public void testServerRequest() {
-        String requestString = "GET / HTTP/1.1";
-        HttpRequest expectedRequest = new HttpRequest();
-        expectedRequest.parseRequest(requestString);
         MockSocketService socketService = new MockSocketService();
-        socketService.request = requestString;
         MockController controller = new MockController();
-        Server subject = new Server(socketService, controller);
-        HttpRequest actualRequest;
+        MockHttpRequest httpRequest = new MockHttpRequest();
+        Server subject = new Server(socketService, controller, httpRequest);
 
-        actualRequest = subject.request();
+        subject.request();
 
-        Assert.assertEquals(expectedRequest.getMethod(), actualRequest.getMethod());
+        Assert.assertTrue(httpRequest.requestParsed);
     }
 
     @Test
     public void testServerResponse() {
-        String request = "GET / HTTP/1.1";
-        String expectedResponse = "response";
         MockSocketService socketService = new MockSocketService();
-        socketService.request = request;
         MockController controller = new MockController();
-        Server subject = new Server(socketService, controller);
+        MockHttpRequest httpRequest = new MockHttpRequest();
+        Server subject = new Server(socketService, controller, httpRequest);
 
-        subject.request();
         subject.response();
 
         Assert.assertTrue(socketService.responseSent);
-        Assert.assertEquals(expectedResponse, socketService.responseMessage);
     }
 }

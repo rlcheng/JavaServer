@@ -9,9 +9,10 @@ public class Server {
     private String response;
     private Socket requestSocket;
 
-    public Server(SocketService socketService, Controller controller) {
+    public Server(SocketService socketService, Controller controller, HttpRequest request) {
         this.socketService = socketService;
         this.controller = controller;
+        this.request = request;
     }
 
     public void start(int port) {
@@ -23,11 +24,9 @@ public class Server {
         socketService.close();
     }
 
-    public HttpRequest request() {
+    public void request() {
         String requestString = socketService.parseSocketMessage(requestSocket);
-        request = new HttpRequest();
         request.parseRequest(requestString);
-        return request;
     }
 
     public void response() {
