@@ -1,39 +1,16 @@
 package com.richardcheng.javaserver;
 
+import com.richardcheng.endpoint.IEndpoint;
 import org.junit.Test;
 import org.junit.Assert;
 
 public class ControllerTest {
     @Test
-    public void testControllerRouteResponse_Root() {
-        String expectedResponse = "HTTP/1.1 200 OK\n";
-        HttpRequest request = new HttpRequest();
-        request.parseRequest("GET / HTTP/1.1");
-        Controller subject = new Controller();
-
-        String actualResponse = subject.routeRequest(request);
-
-        Assert.assertEquals(expectedResponse, actualResponse);
-    }
-
-    @Test
-    public void testControllerRouteResponse_Form() {
-        String expectedResponse = "HTTP/1.1 200 OK\n";
-        HttpRequest request = new HttpRequest();
-        request.parseRequest("GET /form HTTP/1.1");
-        Controller subject = new Controller();
-
-        String actualResponse = subject.routeRequest(request);
-
-        Assert.assertEquals(expectedResponse, actualResponse);
-    }
-
-    @Test
-    public void testControllerRouteResponse_NoRouteFound() {
-        String expectedResponse = "HTTP/1.1 404 NOT FOUND\n";
-        HttpRequest request = new HttpRequest();
-        request.parseRequest("GET /MIA HTTP/1.1");
-        Controller subject = new Controller();
+    public void testControllerRouteResponse() {
+        MockHttpRequest request = new MockHttpRequest();
+        IEndpoint[] endpoints = { new MockRootEndpoint() };
+        Controller subject = new Controller(endpoints);
+        String expectedResponse = "OK";
 
         String actualResponse = subject.routeRequest(request);
 

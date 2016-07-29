@@ -7,7 +7,7 @@ public class ServerTest {
     @Test
     public void testServerStart() {
         MockSocketService socketService = new MockSocketService();
-        MockController controller = new MockController();
+        MockController controller = new MockController(null);
         MockHttpRequest httpRequest = new MockHttpRequest();
         Server subject = new Server(socketService, controller, httpRequest);
         int port = 5000;
@@ -21,7 +21,7 @@ public class ServerTest {
     @Test
     public void testServerStop() {
         MockSocketService socketService = new MockSocketService();
-        MockController controller = new MockController();
+        MockController controller = new MockController(null);
         MockHttpRequest httpRequest = new MockHttpRequest();
         Server subject = new Server(socketService, controller, httpRequest);
 
@@ -33,7 +33,7 @@ public class ServerTest {
     @Test
     public void testServerRequest() {
         MockSocketService socketService = new MockSocketService();
-        MockController controller = new MockController();
+        MockController controller = new MockController(null);
         MockHttpRequest httpRequest = new MockHttpRequest();
         Server subject = new Server(socketService, controller, httpRequest);
 
@@ -45,7 +45,7 @@ public class ServerTest {
     @Test
     public void testServerResponse() {
         MockSocketService socketService = new MockSocketService();
-        MockController controller = new MockController();
+        MockController controller = new MockController(null);
         MockHttpRequest httpRequest = new MockHttpRequest();
         Server subject = new Server(socketService, controller, httpRequest);
 
