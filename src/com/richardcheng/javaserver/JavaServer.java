@@ -8,7 +8,19 @@ public class JavaServer {
         Controller controller = new Controller(endpoints);
         HttpRequest request = new HttpRequest();
         Server server = new Server(socket, controller, request);
-        int port = 5000;
+
+        int port;
+        String publicDir = null;
+        if (args.length == 2) {
+            port = Integer.parseInt(args[0]);
+            publicDir = args[1];
+        }
+        else {
+            port = 5000;
+        }
+
+        System.out.println("PORT: " + port);
+        System.out.println(" Public Directory: " + publicDir);
 
         server.start(port);
         server.request();
