@@ -4,8 +4,8 @@ import com.richardcheng.endpoint.RootEndpoint;
 
 public class MockRootEndpoint extends RootEndpoint {
 
-    public MockRootEndpoint(String directoryPath) {
-        super(directoryPath);
+    public MockRootEndpoint(HttpResponse httpResponse) {
+        super(httpResponse);
     }
 
     public boolean match(String endpoint) {

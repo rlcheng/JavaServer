@@ -8,7 +8,7 @@ public class ControllerTest {
     @Test
     public void testControllerRouteResponse() {
         MockHttpRequest request = new MockHttpRequest();
-        IEndpoint[] endpoints = { new MockRootEndpoint("path") };
+        IEndpoint[] endpoints = { new MockRootEndpoint(new MockHttpResponse()) };
         Controller subject = new Controller(endpoints);
         String expectedResponse = "OK";
 

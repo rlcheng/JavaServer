@@ -6,14 +6,13 @@ import java.util.Hashtable;
 
 public class RootEndpoint implements IEndpoint {
     private Hashtable<String, String> allowedMethods;
-    private String directoryPath;
     private HttpResponse httpResponse;
     private String responseBody;
 
-    public RootEndpoint(String directoryPath) {
+    public RootEndpoint(HttpResponse httpResponse) {
         allowedMethods = new Hashtable<>();
         allowedMethods.put("GET", "200");
-        this.directoryPath = directoryPath;
+        this.httpResponse = httpResponse;
         responseBody = "";
     }
 
@@ -23,8 +22,6 @@ public class RootEndpoint implements IEndpoint {
 
     public String route(String httpMethod) {
         String statusCode = allowedMethods.get(httpMethod);
-
-        httpResponse = new HttpResponse();
 
         if (statusCode == null) {
             return httpResponse.statusLine("405");

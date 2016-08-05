@@ -21,7 +21,7 @@ public class Server {
             port = 5000;
         }
 
-        IEndpoint[] endpoints = { new RootEndpoint(publicDirPath), new FormEndpoint(), new InvalidEndpoint() };
+        IEndpoint[] endpoints = { new RootEndpoint(new HttpResponse()), new FormEndpoint(new HttpResponse()), new InvalidEndpoint(new HttpResponse()) };
         Controller controller = new Controller(endpoints);
         HttpRequest request = new HttpRequest();
         Server server = new Server(controller, request);

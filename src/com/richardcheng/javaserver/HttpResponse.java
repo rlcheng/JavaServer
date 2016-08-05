@@ -10,6 +10,7 @@ public class HttpResponse {
     {
         reasonPhrases = new Hashtable<>();
         reasonPhrases.put("200", "OK");
+        reasonPhrases.put("404", "Not Found");
         reasonPhrases.put("405", "Method Not Allowed");
     }
 
