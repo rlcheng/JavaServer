@@ -28,7 +28,7 @@ public class FormEndpointTest {
     public void route_ReturnsResponse() {
         FormEndpoint subject = new FormEndpoint();
         String httpMethod = "POST";
-        String expectedRouteResponse = "HTTP/1.1 200 OK\n";
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
 
         String actualRouteResponse = subject.route(httpMethod);
 

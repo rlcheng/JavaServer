@@ -6,6 +6,6 @@ public class FormEndpoint implements IEndpoint {
     }
 
     public String route(String httpMethod) {
-        return "HTTP/1.1 200 OK\n";
+        return "HTTP/1.1 200 OK\r\n";
     }
 }
