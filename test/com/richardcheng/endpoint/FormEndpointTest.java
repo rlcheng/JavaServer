@@ -1,6 +1,6 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.javaserver.MockHttpResponse;
+import com.richardcheng.presenter.MockHttpResponse;
 import org.junit.Test;
 import org.junit.Assert;
 

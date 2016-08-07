@@ -1,4 +1,6 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.presenter;
+
+import com.richardcheng.presenter.HttpResponse;
 
 public class MockHttpResponse extends HttpResponse {
     public String statusLine(String code) {

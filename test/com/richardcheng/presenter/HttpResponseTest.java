@@ -1,4 +1,4 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.presenter;
 
 import org.junit.Test;
 import org.junit.Assert;

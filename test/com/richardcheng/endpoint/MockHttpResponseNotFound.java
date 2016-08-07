@@ -1,6 +1,6 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.javaserver.HttpResponse;
+import com.richardcheng.presenter.HttpResponse;
 
 public class MockHttpResponseNotFound extends HttpResponse {
     public String statusLine(String code) {

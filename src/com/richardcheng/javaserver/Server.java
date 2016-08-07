@@ -1,8 +1,12 @@
 package com.richardcheng.javaserver;
 
 import com.richardcheng.endpoint.*;
+import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.presenter.Presenter;
+
 import java.net.*;
 import java.io.*;
+import java.util.LinkedHashMap;
 
 public class Server {
     private Controller controller;
@@ -11,23 +15,37 @@ public class Server {
     private ServerSocket serverSocket;
 
     public static void main(String[] args) {
-        int port;
-        String publicDirPath = null;
-        if (args.length == 2) {
-            port = Integer.parseInt(args[0]);
-            publicDirPath = args[1];
-        }
-        else {
-            port = 5000;
+        int port = 5000;
+        String publicDirPath;
+        LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
+
+        if (args.length == 4) {
+            port = Integer.parseInt(args[1]);
+            publicDirPath = args[3];
+            directoryList = listFiles(publicDirPath);
         }
 
-        IEndpoint[] endpoints = { new RootEndpoint(new HttpResponse()), new FormEndpoint(new HttpResponse()), new InvalidEndpoint(new HttpResponse()) };
+        IEndpoint[] endpoints = { new RootEndpoint(new HttpResponse(), new Presenter(directoryList)), new FormEndpoint(new HttpResponse()), new InvalidEndpoint(new HttpResponse()) };
         Controller controller = new Controller(endpoints);
         HttpRequest request = new HttpRequest();
         Server server = new Server(controller, request);
 
         server.run(port);
         server.stop();
+    }
+
+    private static LinkedHashMap<String, Object> listFiles(String path) {
+        File directory = new File(path);
+        File[] fList = directory.listFiles();
+        LinkedHashMap<String, Object> list = new LinkedHashMap<>();
+
+        for( File file : fList) {
+            if (file.isFile()) {
+                list.put(file.getName(), 1);
+            }
+        }
+
+        return list;
     }
 
     public Server(Controller controller, HttpRequest request) {

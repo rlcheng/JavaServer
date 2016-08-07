@@ -1,19 +1,20 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.javaserver.HttpResponse;
+import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.presenter.Presenter;
 
 import java.util.Hashtable;
 
 public class RootEndpoint implements IEndpoint {
     private Hashtable<String, String> allowedMethods;
     private HttpResponse httpResponse;
-    private String responseBody;
+    private Presenter presenter;
 
-    public RootEndpoint(HttpResponse httpResponse) {
+    public RootEndpoint(HttpResponse httpResponse, Presenter presenter) {
         allowedMethods = new Hashtable<>();
         allowedMethods.put("GET", "200");
         this.httpResponse = httpResponse;
-        responseBody = "";
+        this.presenter = presenter;
     }
 
     public boolean match(String endpoint) {
@@ -27,20 +28,6 @@ public class RootEndpoint implements IEndpoint {
             return httpResponse.statusLine("405");
         }
 
-        responseBody += "<!DOCTYPE html>\n";
-        responseBody += "<html>\n";
-        responseBody += "<body>\n";
-        responseBody += "<a href=\"/file1\">file1</a>\r\n";
-        responseBody += "<a href=\"/file2\">file2</a>\r\n";
-        responseBody += "<a href=\"/image.gif\">image.gif</a>\n";
-        responseBody += "<a href=\"/image.jpeg\">image.jpeg</a>\n";
-        responseBody += "<a href=\"/image.png\">image.png</a>\n";
-        responseBody += "<a href=\"/partial_content.txt\">partial_content.txt</a>\n";
-        responseBody += "<a href=\"/patch-content.txt\">patch-content.txt</a>\n";
-        responseBody += "<a href=\"/text-file.txt\">text-file.txt</a>\n";
-        responseBody += "</body>\n";
-        responseBody += "</html>\n";
-
-        return httpResponse.completeResponse(statusCode, responseBody);
+        return httpResponse.completeResponse(statusCode, presenter.view());
     }
 }
