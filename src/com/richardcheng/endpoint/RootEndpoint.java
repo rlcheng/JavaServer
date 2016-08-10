@@ -13,6 +13,7 @@ public class RootEndpoint implements IEndpoint {
     public RootEndpoint(HttpResponse httpResponse, Presenter presenter) {
         allowedMethods = new Hashtable<>();
         allowedMethods.put("GET", "200");
+        allowedMethods.put("HEAD", "200");
         this.httpResponse = httpResponse;
         this.presenter = presenter;
     }
@@ -26,6 +27,10 @@ public class RootEndpoint implements IEndpoint {
 
         if (statusCode == null) {
             return httpResponse.statusLine("405");
+        }
+
+        if (httpMethod.equals("HEAD")) {
+            return httpResponse.statusLine(statusCode);
         }
 
         return httpResponse.completeResponse(statusCode, presenter.view());
