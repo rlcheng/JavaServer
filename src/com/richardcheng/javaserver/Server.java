@@ -25,7 +25,7 @@ public class Server {
             directoryList = listFiles(publicDirPath);
         }
 
-        IEndpoint[] endpoints = { new RootEndpoint(new HttpResponse(), new Presenter(directoryList)), new FormEndpoint(new HttpResponse()), new InvalidEndpoint(new HttpResponse()) };
+        IEndpoint[] endpoints = { new RootEndpoint(new HttpResponse(), new Presenter(directoryList)), new FormEndpoint(new HttpResponse()), new CoffeeEndpoint(new HttpResponse()), new TeaEndpoint(new HttpResponse()),new InvalidEndpoint(new HttpResponse()) };
         Controller controller = new Controller(endpoints);
         HttpRequest request = new HttpRequest();
         Server server = new Server(controller, request);

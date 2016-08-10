@@ -3,8 +3,8 @@ package com.richardcheng.javaserver;
 import com.richardcheng.endpoint.IEndpoint;
 import com.richardcheng.presenter.MockHttpResponse;
 import com.richardcheng.presenter.Presenter;
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class ControllerTest {
     @Test

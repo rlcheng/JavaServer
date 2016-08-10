@@ -12,6 +12,7 @@ public class HttpResponse {
         reasonPhrases.put("200", "OK");
         reasonPhrases.put("404", "Not Found");
         reasonPhrases.put("405", "Method Not Allowed");
+        reasonPhrases.put("418", "I'm a teapot");
     }
 
     public String statusLine(String code) {

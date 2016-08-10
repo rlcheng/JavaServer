@@ -1,8 +1,8 @@
 package com.richardcheng.endpoint;
 
 import com.richardcheng.presenter.Presenter;
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class RootEndpointTest {
     @Test
