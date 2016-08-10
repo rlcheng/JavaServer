@@ -11,10 +11,10 @@ public class HttpRequest {
         method = parsed[0];
         uri = parsed[1];
         version = parsed[2];
-        endpoint();
+        setEndpoint();
     }
 
-    private void endpoint() {
+    private void setEndpoint() {
         String path[] = uri.split("/");
 
         if (path.length == 0) {

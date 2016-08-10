@@ -1,11 +1,19 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.presenter.HttpResponse;
+
 public class InvalidEndpoint implements IEndpoint {
+    private HttpResponse httpResponse;
+
+    public InvalidEndpoint(HttpResponse httpResponse) {
+        this.httpResponse = httpResponse;
+    }
+
     public boolean match(String endpoint) {
         return true;
     }
 
     public String route(String httpMethod) {
-        return "HTTP/1.1 404 NOT FOUND\n";
+        return httpResponse.statusLine("404");
     }
 }
