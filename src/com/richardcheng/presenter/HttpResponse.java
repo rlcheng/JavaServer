@@ -5,6 +5,7 @@ import java.util.Hashtable;
 public class HttpResponse {
     private static String SP = " ";
     private static String CRLF = "\r\n";
+    private static String SEP = ",";
     private static final Hashtable<String, String> reasonPhrases;
     static
     {
@@ -33,6 +34,16 @@ public class HttpResponse {
 
     private String contentLength(int bodyLength) {
         return "Content-Length:" + SP + Integer.toString(bodyLength) + CRLF;
+    }
+
+    public String allowHeader(Hashtable<String, String> allowedMethods) {
+        String allowed = "Allow: ";
+
+        for (String method : allowedMethods.keySet()) {
+            allowed += method + SEP;
+        }
+
+        return allowed.replaceAll(",$", "") + CRLF;
     }
 
     public String completeResponse(String code, String message) {

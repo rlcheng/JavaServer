@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 
 public class PresenterTest {
     @Test
-    public void testView_returnsNull_whenHashMap_Null() {
+    public void view_returnsNull_whenHashMap_Null() {
         Presenter subject = new Presenter();
 
         String actualResult = subject.view();
@@ -22,7 +22,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void testView_returnsViewPage() {
+    public void view_returnsViewPage() {
         LinkedHashMap<String, Object> list = new LinkedHashMap<>();
         list.put("file1", 1);
         list.put("file2", 2);
