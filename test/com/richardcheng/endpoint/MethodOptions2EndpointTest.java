@@ -8,7 +8,7 @@ public class MethodOptions2EndpointTest {
     @Test
     public void match_ReturnsTrue_if_StringMatch() {
         String endpoint = "method_options2";
-        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponse());
+        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
 
         boolean actual = subject.match(endpoint);
 
@@ -18,7 +18,7 @@ public class MethodOptions2EndpointTest {
     @Test
     public void match_ReturnsFalse_if_StringMatch() {
         String endpoint = "notGoingtoMatch";
-        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponse());
+        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
 
         boolean actual = subject.match(endpoint);
 
@@ -27,9 +27,20 @@ public class MethodOptions2EndpointTest {
 
     @Test
     public void route_Returns200Response_IfMethodMatch() {
-        FormEndpoint subject = new FormEndpoint(new MockHttpResponse());
+        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
         String httpMethod = "GET";
-        String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nAllow: GET,OPTIONS\r\n";
+
+        String actualRouteResponse = subject.route(httpMethod);
+
+        Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
+    }
+
+    @Test
+    public void route_Returns405Response_IfNo_MethodMatch() {
+        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
+        String httpMethod = "NOMATCH";
+        String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
         String actualRouteResponse = subject.route(httpMethod);
 

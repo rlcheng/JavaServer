@@ -4,30 +4,18 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ServerTest {
-    @Test
-    public void testServerRun() {
+    @Test (timeout = 1000)
+    public void run_LoopsThrough_Accept_Request_Response_Methods() {
         MockController controller = new MockController(null);
         MockHttpRequest httpRequest = new MockHttpRequest();
-        MockServer subject = new MockServer(controller, httpRequest);
+        MockServer subject = new MockServer(new ShouldLoop10Times(), controller, httpRequest);
         int port = 5000;
 
         subject.run(port);
 
         Assert.assertTrue(subject.createCalled);
-        Assert.assertEquals(10, subject.iterator);
         Assert.assertTrue(subject.acceptCalled);
         Assert.assertTrue(subject.requestCalled);
         Assert.assertTrue(subject.responseCalled);
-    }
-
-    @Test
-    public void testServerStop() {
-        MockController controller = new MockController(null);
-        MockHttpRequest httpRequest = new MockHttpRequest();
-        MockServer subject = new MockServer(controller, httpRequest);
-
-        subject.stop();
-
-        Assert.assertTrue(subject.stopCalled);
     }
 }
