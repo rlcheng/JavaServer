@@ -13,6 +13,7 @@ public class Server {
     private HttpRequest request;
     private Socket requestSocket;
     private ServerSocket serverSocket;
+    private ShouldLoop serverRunShouldLoop;
 
     public static void main(String[] args) {
         int port = 5000;
@@ -22,41 +23,36 @@ public class Server {
         if (args.length == 4) {
             port = Integer.parseInt(args[1]);
             publicDirPath = args[3];
-            directoryList = listFiles(publicDirPath);
+            directoryList = new FileHandler(publicDirPath).listFiles();
         }
 
-        IEndpoint[] endpoints = { new RootEndpoint(new HttpResponse(), new Presenter(directoryList)), new FormEndpoint(new HttpResponse()), new InvalidEndpoint(new HttpResponse()) };
+        IEndpoint[] endpoints = {
+            new RootEndpoint(new HttpResponse(),
+            new Presenter(directoryList)),
+            new FormEndpoint(new HttpResponse()),
+            new CoffeeEndpoint(new HttpResponse()),
+            new TeaEndpoint(new HttpResponse()),
+            new MethodOptionsEndpoint(new HttpResponse()),
+            new MethodOptions2Endpoint(new HttpResponse()),
+            new InvalidEndpoint(new HttpResponse()) };
+
         Controller controller = new Controller(endpoints);
         HttpRequest request = new HttpRequest();
-        Server server = new Server(controller, request);
+        Server server = new Server(new ShouldLoop(),controller, request);
 
         server.run(port);
-        server.stop();
     }
 
-    private static LinkedHashMap<String, Object> listFiles(String path) {
-        File directory = new File(path);
-        File[] fList = directory.listFiles();
-        LinkedHashMap<String, Object> list = new LinkedHashMap<>();
-
-        for( File file : fList) {
-            if (file.isFile()) {
-                list.put(file.getName(), 1);
-            }
-        }
-
-        return list;
-    }
-
-    public Server(Controller controller, HttpRequest request) {
+    public Server(ShouldLoop serverRunShouldLoop, Controller controller, HttpRequest request) {
         this.controller = controller;
         this.request = request;
+        this.serverRunShouldLoop = serverRunShouldLoop;
     }
 
     public void run(int port) {
         this.create(port);
         try {
-            while (true) {
+            while (serverRunShouldLoop.shouldLoop()) {
                 requestSocket = this.accept();
                 this.request();
                 this.response();
@@ -67,7 +63,7 @@ public class Server {
         }
     }
 
-    public void stop() {
+    protected void stop() {
         try {
             serverSocket.close();
         } catch (IOException e) {
@@ -75,7 +71,7 @@ public class Server {
         }
     }
 
-    private void create(int port) {
+    protected void create(int port) {
         try {
             serverSocket = new ServerSocket();
             serverSocket.setReuseAddress(true);
@@ -85,7 +81,7 @@ public class Server {
         }
     }
 
-    private Socket accept() {
+    protected Socket accept() {
         try {
             return serverSocket.accept();
         } catch (IOException e) {
@@ -93,7 +89,7 @@ public class Server {
         }
     }
 
-    private void request() {
+    protected void request() {
         String requestString;
         try {
             BufferedReader requestMessage = new BufferedReader(new InputStreamReader(requestSocket.getInputStream()));
@@ -104,7 +100,7 @@ public class Server {
         request.parseRequest(requestString);
     }
 
-    private void response() {
+    protected void response() {
         String response = controller.routeRequest(request);
         try {
             DataOutputStream responseStream = new DataOutputStream(requestSocket.getOutputStream());

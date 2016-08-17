@@ -1,7 +1,7 @@
 package com.richardcheng.endpoint;
 
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class InvalidEndpointTest {
     @Test

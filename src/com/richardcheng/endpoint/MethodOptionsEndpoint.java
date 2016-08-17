@@ -1,25 +1,25 @@
 package com.richardcheng.endpoint;
 
 import com.richardcheng.presenter.HttpResponse;
-import com.richardcheng.presenter.Presenter;
 
 import java.util.Hashtable;
 
-public class RootEndpoint implements IEndpoint {
+public class MethodOptionsEndpoint implements IEndpoint {
     private Hashtable<String, String> allowedMethods;
     private HttpResponse httpResponse;
-    private Presenter presenter;
 
-    public RootEndpoint(HttpResponse httpResponse, Presenter presenter) {
+    public MethodOptionsEndpoint(HttpResponse httpResponse) {
         allowedMethods = new Hashtable<>();
         allowedMethods.put("GET", "200");
+        allowedMethods.put("PUT", "200");
+        allowedMethods.put("POST", "200");
         allowedMethods.put("HEAD", "200");
+        allowedMethods.put("OPTIONS", "200");
         this.httpResponse = httpResponse;
-        this.presenter = presenter;
     }
 
     public boolean match(String endpoint) {
-        return endpoint.equals("root");
+        return endpoint.equals("method_options");
     }
 
     public String route(String httpMethod) {
@@ -29,10 +29,6 @@ public class RootEndpoint implements IEndpoint {
             return httpResponse.statusLine("405");
         }
 
-        if (httpMethod.equals("HEAD")) {
-            return httpResponse.statusLine(statusCode);
-        }
-
-        return httpResponse.completeResponse(statusCode, presenter.view());
+        return httpResponse.statusLine("200") + httpResponse.allowHeader(allowedMethods);
     }
 }

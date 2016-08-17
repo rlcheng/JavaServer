@@ -1,11 +1,11 @@
 package com.richardcheng.javaserver;
 
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class HttpRequestTest {
     @Test
-    public void testParseRequest_Root() {
+    public void parseRequest_ParseRequest_And_ForwardSlash_AsRootEndpoint() {
         String request = "GET / HTTP/1.1";
         HttpRequest httpRequest = new HttpRequest();
         String expectedMethod = "GET";
@@ -22,7 +22,7 @@ public class HttpRequestTest {
     }
 
     @Test
-    public void testParseRequest_Form() {
+    public void parseRequest_ParseRequest_And_ForwardSlashForm_AsFormEndpoint() {
         String request = "POST /form HTTP/1.1";
         HttpRequest httpRequest = new HttpRequest();
         String expectedMethod = "POST";

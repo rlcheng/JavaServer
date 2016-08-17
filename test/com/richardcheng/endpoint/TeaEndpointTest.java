@@ -4,11 +4,11 @@ import com.richardcheng.presenter.MockHttpResponse;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class FormEndpointTest {
+public class TeaEndpointTest {
     @Test
     public void match_ReturnsTrue_if_StringMatch() {
-        String endpoint = "form";
-        FormEndpoint subject = new FormEndpoint(new MockHttpResponse());
+        String endpoint = "tea";
+        TeaEndpoint subject = new TeaEndpoint(new MockHttpResponse());
 
         boolean actual = subject.match(endpoint);
 
@@ -18,7 +18,7 @@ public class FormEndpointTest {
     @Test
     public void match_ReturnsFalse_if_StringMatch() {
         String endpoint = "notGoingtoMatch";
-        FormEndpoint subject = new FormEndpoint(new MockHttpResponse());
+        TeaEndpoint subject = new TeaEndpoint(new MockHttpResponse());
 
         boolean actual = subject.match(endpoint);
 
@@ -27,7 +27,7 @@ public class FormEndpointTest {
 
     @Test
     public void route_ReturnsResponse() {
-        FormEndpoint subject = new FormEndpoint(new MockHttpResponse());
+        TeaEndpoint subject = new TeaEndpoint(new MockHttpResponse());
         String httpMethod = "POST";
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
 

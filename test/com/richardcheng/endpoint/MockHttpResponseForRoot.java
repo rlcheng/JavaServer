@@ -4,6 +4,10 @@ import com.richardcheng.presenter.HttpResponse;
 
 public class MockHttpResponseForRoot extends HttpResponse {
     public String statusLine(String code) {
+        if (code.equals("200")) {
+            return "HTTP/1.1 200 OK\r\n";
+        }
+
         return "HTTP/1.1 405 Method Not Allowed\r\n";
     }
 

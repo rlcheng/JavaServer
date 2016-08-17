@@ -1,8 +1,8 @@
 package com.richardcheng.endpoint;
 
 import com.richardcheng.presenter.Presenter;
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class RootEndpointTest {
     @Test
@@ -26,7 +26,7 @@ public class RootEndpointTest {
     }
 
     @Test
-    public void route_Returns200Response_IfRequestMethod_IsFound() {
+    public void route_Returns200Response_IfGETRequestMethod_IsFound() {
         RootEndpoint subject = new RootEndpoint(new MockHttpResponseForRoot(), new Presenter());
         String httpMethod = "GET";
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
@@ -36,6 +36,17 @@ public class RootEndpointTest {
         Assert.assertTrue(actualRouteResponse.contains(expectedRouteResponse));
         Assert.assertTrue(actualRouteResponse.contains("href"));
         Assert.assertTrue(actualRouteResponse.contains("file1"));
+    }
+
+    @Test
+    public void route_Returns200Response_IfHEADRequestMethod_IsFound() {
+        RootEndpoint subject = new RootEndpoint(new MockHttpResponseForRoot(), new Presenter());
+        String httpMethod = "HEAD";
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
+
+        String actualRouteResponse = subject.route(httpMethod);
+
+        Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
 
     @Test
