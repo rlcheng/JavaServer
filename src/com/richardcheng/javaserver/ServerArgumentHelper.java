@@ -11,7 +11,7 @@ public class ServerArgumentHelper {
         this.args = args;
     }
 
-    public void getArgs() {
+    public void parseArgs() {
         HashMap<String, String> argsHash = new HashMap<>();
 
         if (args.length % 2 == 0) {

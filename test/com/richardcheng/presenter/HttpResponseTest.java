@@ -1,5 +1,6 @@
 package com.richardcheng.presenter;
 
+import com.richardcheng.javaserver.MockHttpRequest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -70,6 +71,17 @@ public class HttpResponseTest {
         String expectedResult = "Allow: GET,OPTIONS\r\n";
 
         String actualResult = subject.allowHeader(allowedMethods);
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void location_Returns_Root_URL() {
+        HttpResponse subject = new HttpResponse();
+        int port = 5000;
+        String expectedResult = "Location: http://localhost:" + Integer.toString(port) + "/\r\n";
+
+        String actualResult = subject.location(port);
 
         Assert.assertEquals(expectedResult, actualResult);
     }

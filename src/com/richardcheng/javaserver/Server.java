@@ -17,7 +17,7 @@ public class Server {
 
     public static void main(String[] args) {
         ServerArgumentHelper serverArgs = new ServerArgumentHelper(args);
-        serverArgs.getArgs();
+        serverArgs.parseArgs();
 
         LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
 
@@ -33,6 +33,7 @@ public class Server {
             new TeaEndpoint(new HttpResponse()),
             new MethodOptionsEndpoint(new HttpResponse()),
             new MethodOptions2Endpoint(new HttpResponse()),
+            new RedirectEndpoint(new HttpResponse(), serverArgs.port()),
             new InvalidEndpoint(new HttpResponse()) };
 
         Controller controller = new Controller(endpoints);

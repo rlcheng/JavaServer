@@ -11,6 +11,7 @@ public class HttpResponse {
     {
         reasonPhrases = new Hashtable<>();
         reasonPhrases.put("200", "OK");
+        reasonPhrases.put("302", "Found");
         reasonPhrases.put("404", "Not Found");
         reasonPhrases.put("405", "Method Not Allowed");
         reasonPhrases.put("418", "I'm a teapot");
@@ -44,6 +45,10 @@ public class HttpResponse {
         }
 
         return allowed.replaceAll(",$", "") + CRLF;
+    }
+
+    public String location(int port) {
+        return "Location: http://localhost:" + Integer.toString(port) + "/" + CRLF;
     }
 
     public String completeResponse(String code, String message) {

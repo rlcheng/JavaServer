@@ -4,11 +4,12 @@ import com.richardcheng.presenter.MockHttpResponse;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CoffeeEndpointTest {
+public class RedirectEndpointTest {
     @Test
     public void match_ReturnsTrue_if_StringMatch() {
-        String endpoint = "coffee";
-        CoffeeEndpoint subject = new CoffeeEndpoint(new MockHttpResponse());
+        String endpoint = "redirect";
+        int port = 5000;
+        RedirectEndpoint subject = new RedirectEndpoint(new MockHttpResponse(), port);
 
         boolean actual = subject.match(endpoint);
 
@@ -18,7 +19,8 @@ public class CoffeeEndpointTest {
     @Test
     public void match_ReturnsFalse_if_StringMatch() {
         String endpoint = "notGoingtoMatch";
-        CoffeeEndpoint subject = new CoffeeEndpoint(new MockHttpResponse());
+        int port = 5000;
+        RedirectEndpoint subject = new RedirectEndpoint(new MockHttpResponse(), port);
 
         boolean actual = subject.match(endpoint);
 
@@ -27,13 +29,14 @@ public class CoffeeEndpointTest {
 
     @Test
     public void route_ReturnsResponse() {
-        CoffeeEndpoint subject = new CoffeeEndpoint(new MockHttpResponseCoffee());
+        int port = 5000;
+        RedirectEndpoint subject = new RedirectEndpoint(new MockHttpResponseRedirect(), port);
         String httpMethod = "GET";
-        String expectedBodyLength = "12";
+        String expectedRouteResponse = "HTTP/1.1 302 Found\r\nLocation: http://localhost:5000/\r\n";
 
         String actualRouteResponse = subject.route(httpMethod);
 
-        Assert.assertTrue(actualRouteResponse.contains("HTTP/1.1 418 I'm a teapot"));
-        Assert.assertTrue(actualRouteResponse.contains(expectedBodyLength));
+        Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
+
 }
