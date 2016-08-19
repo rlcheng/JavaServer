@@ -1,6 +1,6 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.httpIO.HttpResponse;
 
 public class RedirectEndpoint implements IEndpoint {
     private HttpResponse httpResponse;

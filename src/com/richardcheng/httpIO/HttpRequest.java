@@ -1,4 +1,4 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.httpIO;
 
 public class HttpRequest {
     private String method;

@@ -1,6 +1,6 @@
-package com.richardcheng.endpoint;
+package com.richardcheng.endpoint.mock;
 
-import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.httpIO.HttpResponse;
 
 public class MockHttpResponseForRoot extends HttpResponse {
     public String statusLine(String code) {

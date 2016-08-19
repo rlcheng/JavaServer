@@ -1,5 +1,6 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.endpoint.mock.MockHttpResponseNotFound;
 import org.junit.Assert;
 import org.junit.Test;
 

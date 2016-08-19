@@ -1,5 +1,6 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.httpIO;
 
+import com.richardcheng.httpIO.HttpRequest;
 import org.junit.Assert;
 import org.junit.Test;
 

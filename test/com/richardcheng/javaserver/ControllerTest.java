@@ -1,7 +1,10 @@
 package com.richardcheng.javaserver;
 
 import com.richardcheng.endpoint.IEndpoint;
-import com.richardcheng.presenter.MockHttpResponse;
+import com.richardcheng.javaserver.mock.MockHttpRequest;
+import com.richardcheng.javaserver.mock.MockRootEndpoint;
+import com.richardcheng.javaserver.mock.MockRootEndpointNoMatch;
+import com.richardcheng.httpIO.mock.MockHttpResponse;
 import com.richardcheng.presenter.Presenter;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,5 +1,7 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.endpoint.mock.MockHttpResponseForRoot;
+import com.richardcheng.endpoint.mock.MockHttpResponseNotFound;
 import com.richardcheng.presenter.Presenter;
 import org.junit.Assert;
 import org.junit.Test;

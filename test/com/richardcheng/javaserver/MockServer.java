@@ -1,7 +1,7 @@
 package com.richardcheng.javaserver;
 
 import java.net.Socket;
-
+/*
 public class MockServer extends Server {
     boolean stopCalled;
     boolean createCalled;
@@ -34,3 +34,4 @@ public class MockServer extends Server {
         responseCalled = true;
     }
 }
+*/

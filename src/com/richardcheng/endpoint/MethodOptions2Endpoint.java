@@ -1,6 +1,6 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.httpIO.HttpResponse;
 
 import java.util.Hashtable;
 

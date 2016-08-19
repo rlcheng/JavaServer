@@ -1,7 +1,9 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.javaserver.mock;
+
+import com.richardcheng.httpIO.HttpRequest;
 
 public class MockHttpRequest extends HttpRequest {
-    boolean requestParsed;
+    public boolean requestParsed;
 
     public void parseRequest(String request) {
         requestParsed = true;

@@ -1,6 +1,6 @@
-package com.richardcheng.presenter;
+package com.richardcheng.httpIO;
 
-import com.richardcheng.javaserver.MockHttpRequest;
+import com.richardcheng.httpIO.mock.MockHttpResponse;
 import org.junit.Assert;
 import org.junit.Test;
 

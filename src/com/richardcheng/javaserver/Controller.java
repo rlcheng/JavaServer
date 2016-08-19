@@ -1,6 +1,7 @@
 package com.richardcheng.javaserver;
 
 import com.richardcheng.endpoint.*;
+import com.richardcheng.httpIO.HttpRequest;
 
 public class Controller {
     private IEndpoint[] endpoints;

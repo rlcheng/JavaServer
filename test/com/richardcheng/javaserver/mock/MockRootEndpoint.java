@@ -1,7 +1,7 @@
-package com.richardcheng.javaserver;
+package com.richardcheng.javaserver.mock;
 
 import com.richardcheng.endpoint.RootEndpoint;
-import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.httpIO.HttpResponse;
 import com.richardcheng.presenter.Presenter;
 
 public class MockRootEndpoint extends RootEndpoint {
