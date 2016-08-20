@@ -16,14 +16,13 @@ public class Server {
     private ShouldLoop serverRunShouldLoop;
 
     public static void main(String[] args) {
-        int port = 5000;
-        String publicDirPath;
+        ServerArgumentHelper serverArgs = new ServerArgumentHelper(args);
+        serverArgs.parseArgs();
+
         LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
 
-        if (args.length == 4) {
-            port = Integer.parseInt(args[1]);
-            publicDirPath = args[3];
-            directoryList = new FileHandler(publicDirPath).listFiles();
+        if (serverArgs.path().length() > 0) {
+            directoryList = new FileHandler(serverArgs.path()).listFiles();
         }
 
         IEndpoint[] endpoints = {
@@ -34,13 +33,14 @@ public class Server {
             new TeaEndpoint(new HttpResponse()),
             new MethodOptionsEndpoint(new HttpResponse()),
             new MethodOptions2Endpoint(new HttpResponse()),
+            new RedirectEndpoint(new HttpResponse(), serverArgs.port()),
             new InvalidEndpoint(new HttpResponse()) };
 
         Controller controller = new Controller(endpoints);
         HttpRequest request = new HttpRequest();
         Server server = new Server(new ShouldLoop(),controller, request);
 
-        server.run(port);
+        server.run(serverArgs.port());
     }
 
     public Server(ShouldLoop serverRunShouldLoop, Controller controller, HttpRequest request) {
