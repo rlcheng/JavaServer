@@ -84,14 +84,15 @@ public class Server {
     }
 
     private void request(Socket requestSocket) {
-        String requestString;
+        BufferedReader requestMessage;
+
         try {
-            BufferedReader requestMessage = new BufferedReader(new InputStreamReader(requestSocket.getInputStream()));
-            requestString = requestMessage.readLine();
+            requestMessage = new BufferedReader(new InputStreamReader(requestSocket.getInputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        request.parseRequest(requestString);
+
+        request.parseMessage(requestMessage);
     }
 
     private void response(Socket requestSocket) {

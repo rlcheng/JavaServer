@@ -15,7 +15,7 @@ public class RedirectEndpoint implements IEndpoint {
         return endpoint.equals("redirect");
     }
 
-    public String route(String httpMethod) {
+    public String route(String httpMethod, String data) {
         return httpResponse.statusLine("302") + httpResponse.location(port);
     }
 }

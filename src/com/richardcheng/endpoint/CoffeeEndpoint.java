@@ -12,7 +12,7 @@ public class CoffeeEndpoint implements IEndpoint {
     public boolean match(String endpoint) {
         return endpoint.equals("coffee");
     }
-    public String route(String httpMethod) {
+    public String route(String httpMethod, String data) {
         return httpResponse.completeResponse("418", "I'm a teapot");
     }
 }

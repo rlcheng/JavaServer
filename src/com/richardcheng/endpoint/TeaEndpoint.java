@@ -13,7 +13,7 @@ public class TeaEndpoint implements IEndpoint {
         return endpoint.equals("tea");
     }
 
-    public String route(String httpMethod) {
+    public String route(String httpMethod, String data) {
         return httpResponse.statusLine("200");
     }
 }

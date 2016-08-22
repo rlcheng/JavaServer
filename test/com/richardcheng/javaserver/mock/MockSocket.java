@@ -12,7 +12,7 @@ public class MockSocket extends Socket {
     }
 
     public InputStream getInputStream() throws IOException {
-        return new ByteArrayInputStream("stuff".getBytes(StandardCharsets.UTF_8));
+        return new ByteArrayInputStream("stuff\n\n".getBytes(StandardCharsets.UTF_8));
     }
 
     public OutputStream getOutputStream() throws IOException {

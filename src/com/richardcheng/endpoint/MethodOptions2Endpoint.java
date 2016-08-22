@@ -19,7 +19,7 @@ public class MethodOptions2Endpoint implements IEndpoint {
         return endpoint.equals("method_options2");
     }
 
-    public String route(String httpMethod) {
+    public String route(String httpMethod, String data) {
         String statusCode = allowedMethods.get(httpMethod);
 
         if (statusCode == null) {

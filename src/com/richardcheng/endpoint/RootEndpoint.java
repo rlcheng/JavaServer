@@ -22,7 +22,7 @@ public class RootEndpoint implements IEndpoint {
         return endpoint.equals("root");
     }
 
-    public String route(String httpMethod) {
+    public String route(String httpMethod, String data) {
         String statusCode = allowedMethods.get(httpMethod);
 
         if (statusCode == null) {

@@ -34,8 +34,9 @@ public class RedirectEndpointTest {
         RedirectEndpoint subject = new RedirectEndpoint(new MockHttpResponseRedirect(), port);
         String httpMethod = "GET";
         String expectedRouteResponse = "HTTP/1.1 302 Found\r\nLocation: http://localhost:5000/\r\n";
+        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpMethod, noData);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

@@ -31,8 +31,9 @@ public class CoffeeEndpointTest {
         CoffeeEndpoint subject = new CoffeeEndpoint(new MockHttpResponseCoffee());
         String httpMethod = "GET";
         String expectedBodyLength = "12";
+        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpMethod, noData);
 
         Assert.assertTrue(actualRouteResponse.contains("HTTP/1.1 418 I'm a teapot"));
         Assert.assertTrue(actualRouteResponse.contains(expectedBodyLength));

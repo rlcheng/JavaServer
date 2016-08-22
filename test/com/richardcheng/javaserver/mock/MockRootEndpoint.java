@@ -14,7 +14,7 @@ public class MockRootEndpoint extends RootEndpoint {
         return true;
     }
 
-    public String route(String httpMethod) {
+    public String route(String httpMethod, String data) {
         return "OK";
     }
 }

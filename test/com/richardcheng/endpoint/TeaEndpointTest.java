@@ -30,8 +30,9 @@ public class TeaEndpointTest {
         TeaEndpoint subject = new TeaEndpoint(new MockHttpResponse());
         String httpMethod = "POST";
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
+        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpMethod, noData);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

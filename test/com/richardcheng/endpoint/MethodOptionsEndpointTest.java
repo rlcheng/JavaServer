@@ -30,8 +30,9 @@ public class MethodOptionsEndpointTest {
         MethodOptionsEndpoint subject = new MethodOptionsEndpoint(new MockHttpResponseMethodOptions());
         String httpMethod = "GET";
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nAllow: GET,PUT,OPTIONS,HEAD,POST\r\n";
+        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpMethod, noData);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -41,8 +42,9 @@ public class MethodOptionsEndpointTest {
         MethodOptionsEndpoint subject = new MethodOptionsEndpoint(new MockHttpResponseMethodOptions());
         String httpMethod = "NOMATCH";
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
+        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpMethod, noData);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

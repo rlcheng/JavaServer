@@ -15,7 +15,7 @@ public class Controller {
 
         for(IEndpoint endpoint : endpoints) {
             if (endpoint.match(requestEndpoint)) {
-                return endpoint.route(request.getMethod());
+                return endpoint.route(request.getMethod(), request.getData());
             }
         }
 

@@ -20,8 +20,9 @@ public class InvalidEndpointTest {
         InvalidEndpoint subject = new InvalidEndpoint(new MockHttpResponseNotFound());
         String httpMethod = "GET";
         String expectedRouteResponse = "HTTP/1.1 404 Not Found\r\n";
+        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpMethod, noData);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

@@ -13,7 +13,7 @@ public class InvalidEndpoint implements IEndpoint {
         return true;
     }
 
-    public String route(String httpMethod) {
+    public String route(String httpMethod, String data) {
         return httpResponse.statusLine("404");
     }
 }
