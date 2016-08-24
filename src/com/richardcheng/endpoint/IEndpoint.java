@@ -1,6 +1,8 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.httpIO.HttpRequest;
+
 public interface IEndpoint {
     boolean match(String endpoint);
-    String route(String httpMethod, String data);
+    String route(HttpRequest request);
 }

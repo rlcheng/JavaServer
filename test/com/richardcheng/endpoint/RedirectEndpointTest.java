@@ -1,5 +1,6 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.endpoint.mock.MockHttpRequestGet;
 import com.richardcheng.endpoint.mock.MockHttpResponseRedirect;
 import com.richardcheng.httpIO.mock.MockHttpResponse;
 import org.junit.Assert;
@@ -32,11 +33,10 @@ public class RedirectEndpointTest {
     public void route_ReturnsResponse() {
         int port = 5000;
         RedirectEndpoint subject = new RedirectEndpoint(new MockHttpResponseRedirect(), port);
-        String httpMethod = "GET";
+        MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 302 Found\r\nLocation: http://localhost:5000/\r\n";
-        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod, noData);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

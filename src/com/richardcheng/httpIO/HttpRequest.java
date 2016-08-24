@@ -2,6 +2,7 @@ package com.richardcheng.httpIO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Base64;
 
 public class HttpRequest {
     private String method;
@@ -9,6 +10,8 @@ public class HttpRequest {
     private String version;
     private String endpoint;
     private String data;
+    private String log = "";
+    private String auth = "";
 
     public void parseMessage(BufferedReader requestMessage) {
         try {
@@ -22,6 +25,10 @@ public class HttpRequest {
                 if (parsed[0].equals("Content-Length:")) {
                     size = Integer.parseInt(parsed[1]);
                 }
+
+                if (parsed[0].equals("Authorization:")) {
+                    auth = new String(Base64.getDecoder().decode(parsed[2]));
+                }
             }
 
             char[] charBuffer = new char[size];
@@ -33,6 +40,7 @@ public class HttpRequest {
     }
 
     private void parseRequest(String request) {
+        log += request;
         String parsed[] = request.split(" ");
         method = parsed[0];
         uri = parsed[1];
@@ -69,5 +77,13 @@ public class HttpRequest {
 
     public String getData() {
         return data;
+    }
+
+    public String getLog() {
+        return log;
+    }
+
+    public String getAuth() {
+        return auth;
     }
 }

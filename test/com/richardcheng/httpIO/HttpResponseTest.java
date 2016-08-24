@@ -87,6 +87,16 @@ public class HttpResponseTest {
     }
 
     @Test
+    public void authHeader_Returns_authMessage() {
+        HttpResponse subject = new HttpResponse();
+        String expectedResult = "WWW-Authenticate: Basic\r\n";
+
+        String actualResult = subject.authHeader();
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
     public void completeResponse_Returns_StatusLine_EntityHeader_Message() {
         String message = "HELLO";
         MockHttpResponse subject = new MockHttpResponse();

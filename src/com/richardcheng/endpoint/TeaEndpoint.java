@@ -1,5 +1,6 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.httpIO.HttpRequest;
 import com.richardcheng.httpIO.HttpResponse;
 
 public class TeaEndpoint implements IEndpoint {
@@ -13,7 +14,7 @@ public class TeaEndpoint implements IEndpoint {
         return endpoint.equals("tea");
     }
 
-    public String route(String httpMethod, String data) {
+    public String route(HttpRequest httpRequest) {
         return httpResponse.statusLine("200");
     }
 }

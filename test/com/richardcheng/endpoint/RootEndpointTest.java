@@ -1,7 +1,7 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.endpoint.mock.MockHttpResponseRoot;
-import com.richardcheng.endpoint.mock.MockHttpResponseNotFound;
+import com.richardcheng.endpoint.mock.*;
+import com.richardcheng.javaserver.mock.MockHttpRequest;
 import com.richardcheng.presenter.Presenter;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,11 +30,10 @@ public class RootEndpointTest {
     @Test
     public void route_Returns200Response_IfGETRequestMethod_IsFound() {
         RootEndpoint subject = new RootEndpoint(new MockHttpResponseRoot(), new Presenter());
-        String httpMethod = "GET";
+        MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
-        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod, noData);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertTrue(actualRouteResponse.contains(expectedRouteResponse));
         Assert.assertTrue(actualRouteResponse.contains("href"));
@@ -44,11 +43,10 @@ public class RootEndpointTest {
     @Test
     public void route_Returns200Response_IfHEADRequestMethod_IsFound() {
         RootEndpoint subject = new RootEndpoint(new MockHttpResponseRoot(), new Presenter());
-        String httpMethod = "HEAD";
+        MockHttpRequestHead httpRequest = new MockHttpRequestHead();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
-        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod, noData);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -56,11 +54,10 @@ public class RootEndpointTest {
     @Test
     public void route_Returns405Response_IfRequestMethod_NotFound() {
         RootEndpoint subject = new RootEndpoint(new MockHttpResponseRoot(), new Presenter());
-        String httpMethod = "PUT";
+        MockHttpRequestPut httpRequest = new MockHttpRequestPut();
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
-        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod, noData);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

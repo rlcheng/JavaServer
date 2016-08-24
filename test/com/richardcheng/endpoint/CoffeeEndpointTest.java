@@ -1,5 +1,6 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.endpoint.mock.MockHttpRequestGet;
 import com.richardcheng.endpoint.mock.MockHttpResponseCoffee;
 import com.richardcheng.httpIO.mock.MockHttpResponse;
 import org.junit.Assert;
@@ -29,11 +30,10 @@ public class CoffeeEndpointTest {
     @Test
     public void route_ReturnsResponse() {
         CoffeeEndpoint subject = new CoffeeEndpoint(new MockHttpResponseCoffee());
-        String httpMethod = "GET";
+        MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedBodyLength = "12";
-        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod, noData);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertTrue(actualRouteResponse.contains("HTTP/1.1 418 I'm a teapot"));
         Assert.assertTrue(actualRouteResponse.contains(expectedBodyLength));

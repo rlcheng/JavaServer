@@ -1,6 +1,6 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.endpoint.mock.MockHttpResponseForm;
+import com.richardcheng.endpoint.mock.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,10 +28,10 @@ public class FormEndpointTest {
     @Test
     public void route_Returns200Response_IfPOSTMethodMatch_WithData() {
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
-        String httpMethod = "POST";
-        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 11\r\n\r\ndata=fatcat";
+        MockHttpRequestPost httpRequest = new MockHttpRequestPost();
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
 
-        String actualRouteResponse = subject.route(httpMethod, "data=fatcat");
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -39,10 +39,10 @@ public class FormEndpointTest {
     @Test
     public void route_Returns200Response_IfPUTMethodMatch_WithData() {
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
-        String httpMethod = "PUT";
-        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 11\r\n\r\ndata=fatcat";
+        MockHttpRequestPut httpRequest = new MockHttpRequestPut();
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
 
-        String actualRouteResponse = subject.route(httpMethod, "data=fatcat");
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -50,10 +50,10 @@ public class FormEndpointTest {
     @Test
     public void route_Returns200Response_OnlyIfGETMethod() {
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
-        String httpMethod = "GET";
+        MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
-        String actualRouteResponse = subject.route(httpMethod, "data=fatcat");
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -61,10 +61,10 @@ public class FormEndpointTest {
     @Test
     public void route_Returns405Response_IfNo_MethodMatch() {
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
-        String httpMethod = "NOMATCH";
+        MockHttpRequestNoMatch httpRequest = new MockHttpRequestNoMatch();
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
-        String actualRouteResponse = subject.route(httpMethod, "");
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -72,10 +72,10 @@ public class FormEndpointTest {
     @Test
     public void route_Returns200Response_Only_IfDELETEMethod() {
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
-        String httpMethod = "DELETE";
+        MockHttpRequestDelete httpRequest = new MockHttpRequestDelete();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
 
-        String actualRouteResponse = subject.route(httpMethod, "");
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

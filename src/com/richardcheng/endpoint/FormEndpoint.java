@@ -1,5 +1,6 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.httpIO.HttpRequest;
 import com.richardcheng.httpIO.HttpResponse;
 
 import java.util.Hashtable;
@@ -22,7 +23,8 @@ public class FormEndpoint implements IEndpoint {
         return endpoint.equals("form");
     }
 
-    public String route(String httpMethod, String data) {
+    public String route(HttpRequest httpRequest) {
+        String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
 
         if (statusCode == null) {
@@ -30,7 +32,7 @@ public class FormEndpoint implements IEndpoint {
         }
 
         if (httpMethod.equals("POST") || httpMethod.equals("PUT")) {
-            this.data = data;
+            this.data = httpRequest.getData();
         } else if (httpMethod.equals("DELETE")) {
             this.data = "";
             return httpResponse.statusLine(statusCode);

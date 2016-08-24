@@ -1,5 +1,6 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.httpIO.HttpRequest;
 import com.richardcheng.httpIO.HttpResponse;
 import com.richardcheng.presenter.Presenter;
 
@@ -22,7 +23,8 @@ public class RootEndpoint implements IEndpoint {
         return endpoint.equals("root");
     }
 
-    public String route(String httpMethod, String data) {
+    public String route(HttpRequest httpRequest) {
+        String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
 
         if (statusCode == null) {

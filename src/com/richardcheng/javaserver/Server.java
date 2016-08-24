@@ -35,6 +35,7 @@ public class Server {
             new MethodOptionsEndpoint(new HttpResponse()),
             new MethodOptions2Endpoint(new HttpResponse()),
             new RedirectEndpoint(new HttpResponse(), serverArgs.port()),
+            new LogsEndpoint(new HttpResponse()),
             new InvalidEndpoint(new HttpResponse()) };
 
         Controller controller = new Controller(endpoints);

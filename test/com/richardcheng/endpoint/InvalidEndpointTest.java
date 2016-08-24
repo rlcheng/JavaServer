@@ -1,5 +1,6 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.endpoint.mock.MockHttpRequestGet;
 import com.richardcheng.endpoint.mock.MockHttpResponseNotFound;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,11 +19,10 @@ public class InvalidEndpointTest {
     @Test
     public void route_ReturnsResponse() {
         InvalidEndpoint subject = new InvalidEndpoint(new MockHttpResponseNotFound());
-        String httpMethod = "GET";
+        MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 404 Not Found\r\n";
-        String noData = null;
 
-        String actualRouteResponse = subject.route(httpMethod, noData);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
