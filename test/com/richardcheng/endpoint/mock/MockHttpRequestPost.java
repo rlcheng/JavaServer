@@ -8,6 +8,6 @@ public class MockHttpRequestPost extends HttpRequest{
     }
 
     public String getData() {
-        return "data=garfield";
+        return "data=odey";
     }
 }

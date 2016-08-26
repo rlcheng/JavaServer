@@ -1,6 +1,7 @@
 package com.richardcheng.endpoint;
 
 import com.richardcheng.endpoint.mock.*;
+import com.richardcheng.javaserver.mock.MockHttpRequest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,10 +27,10 @@ public class FormEndpointTest {
     }
 
     @Test
-    public void route_Returns200Response_IfPOSTMethodMatch_WithData() {
+    public void route_Returns200Response_IfPOSTMethodMatch_WithData_WhenDataEmpty() {
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
         MockHttpRequestPost httpRequest = new MockHttpRequestPost();
-        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 9\r\n\r\ndata=odey";
 
         String actualRouteResponse = subject.route(httpRequest);
 
@@ -37,10 +38,41 @@ public class FormEndpointTest {
     }
 
     @Test
-    public void route_Returns200Response_IfPUTMethodMatch_WithData() {
+    public void route_Returns200Response_IfPostMethodMatch_NoDataUpdate_WhenDataExist() {
+        FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
+        MockHttpRequestPost postHttpRequest = new MockHttpRequestPost();
+        MockHttpRequestPut putHttpRequest = new MockHttpRequestPut();
+        MockHttpRequestPost secondPostHttpRequest = new MockHttpRequestPost();
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
+
+        String firstRouteResponse = subject.route(postHttpRequest);
+        String secondRouteResponse = subject.route(putHttpRequest);
+        String actualRouteResponse = subject.route(secondPostHttpRequest);
+
+        Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
+        Assert.assertEquals(secondRouteResponse, actualRouteResponse);
+        Assert.assertNotEquals(firstRouteResponse, actualRouteResponse);
+    }
+
+    @Test
+    public void route_Returns200Response_IfPUTMethodMatch_WithData_WhenUpdatingData() {
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
         MockHttpRequestPut httpRequest = new MockHttpRequestPut();
+        MockHttpRequestPost httpRequestPost = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
+
+        String setupResponse = subject.route(httpRequestPost);
+        String actualRouteResponse = subject.route(httpRequest);
+
+        Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
+        Assert.assertNotEquals(setupResponse, actualRouteResponse);
+    }
+
+    @Test
+    public void route_Returns200Response_IfPUTMethodMatch_NoData_WhenNo_ExistingData() {
+        FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
+        MockHttpRequestPut httpRequest = new MockHttpRequestPut();
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
         String actualRouteResponse = subject.route(httpRequest);
 
