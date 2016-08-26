@@ -1,6 +1,7 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.httpIO.HttpRequest;
+import com.richardcheng.httpIO.HttpResponse;
 
 import java.util.Hashtable;
 
@@ -22,8 +23,8 @@ public class MethodOptionsEndpoint implements IEndpoint {
         return endpoint.equals("method_options");
     }
 
-    public String route(String httpMethod) {
-        String statusCode = allowedMethods.get(httpMethod);
+    public String route(HttpRequest httpRequest) {
+        String statusCode = allowedMethods.get(httpRequest.getMethod());
 
         if (statusCode == null) {
             return httpResponse.statusLine("405");

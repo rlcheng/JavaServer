@@ -1,6 +1,7 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.httpIO.HttpRequest;
+import com.richardcheng.httpIO.HttpResponse;
 import com.richardcheng.presenter.Presenter;
 
 import java.util.Hashtable;
@@ -22,7 +23,8 @@ public class RootEndpoint implements IEndpoint {
         return endpoint.equals("root");
     }
 
-    public String route(String httpMethod) {
+    public String route(HttpRequest httpRequest) {
+        String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
 
         if (statusCode == null) {

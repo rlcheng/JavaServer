@@ -1,6 +1,6 @@
-package com.richardcheng.presenter;
+package com.richardcheng.httpIO;
 
-import com.richardcheng.javaserver.MockHttpRequest;
+import com.richardcheng.httpIO.mock.MockHttpResponse;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -82,6 +82,16 @@ public class HttpResponseTest {
         String expectedResult = "Location: http://localhost:" + Integer.toString(port) + "/\r\n";
 
         String actualResult = subject.location(port);
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void authHeader_Returns_authMessage() {
+        HttpResponse subject = new HttpResponse();
+        String expectedResult = "WWW-Authenticate: Basic\r\n";
+
+        String actualResult = subject.authHeader();
 
         Assert.assertEquals(expectedResult, actualResult);
     }

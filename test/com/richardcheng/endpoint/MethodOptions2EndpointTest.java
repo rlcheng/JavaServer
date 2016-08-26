@@ -1,6 +1,8 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.presenter.MockHttpResponse;
+import com.richardcheng.endpoint.mock.MockHttpRequestGet;
+import com.richardcheng.endpoint.mock.MockHttpRequestNoMatch;
+import com.richardcheng.endpoint.mock.MockHttpResponseMethodOptions2;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,10 +30,10 @@ public class MethodOptions2EndpointTest {
     @Test
     public void route_Returns200Response_IfMethodMatch() {
         MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
-        String httpMethod = "GET";
+        MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nAllow: GET,OPTIONS\r\n";
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -39,10 +41,10 @@ public class MethodOptions2EndpointTest {
     @Test
     public void route_Returns405Response_IfNo_MethodMatch() {
         MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
-        String httpMethod = "NOMATCH";
+        MockHttpRequestNoMatch httpRequest = new MockHttpRequestNoMatch();
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

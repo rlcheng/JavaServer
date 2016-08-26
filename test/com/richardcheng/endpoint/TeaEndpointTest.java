@@ -1,6 +1,7 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.presenter.MockHttpResponse;
+import com.richardcheng.endpoint.mock.MockHttpRequestPost;
+import com.richardcheng.httpIO.mock.MockHttpResponse;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,10 +29,10 @@ public class TeaEndpointTest {
     @Test
     public void route_ReturnsResponse() {
         TeaEndpoint subject = new TeaEndpoint(new MockHttpResponse());
-        String httpMethod = "POST";
+        MockHttpRequestPost httpRequest = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
 
-        String actualRouteResponse = subject.route(httpMethod);
+        String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

@@ -1,6 +1,7 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.httpIO.HttpRequest;
+import com.richardcheng.httpIO.HttpResponse;
 
 public class RedirectEndpoint implements IEndpoint {
     private HttpResponse httpResponse;
@@ -15,7 +16,7 @@ public class RedirectEndpoint implements IEndpoint {
         return endpoint.equals("redirect");
     }
 
-    public String route(String httpMethod) {
+    public String route(HttpRequest httpRequest) {
         return httpResponse.statusLine("302") + httpResponse.location(port);
     }
 }

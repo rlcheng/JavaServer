@@ -1,7 +1,8 @@
 package com.richardcheng.javaserver;
 
 import com.richardcheng.endpoint.*;
-import com.richardcheng.presenter.HttpResponse;
+import com.richardcheng.httpIO.HttpRequest;
+import com.richardcheng.httpIO.HttpResponse;
 import com.richardcheng.presenter.Presenter;
 
 import java.net.*;
@@ -11,7 +12,6 @@ import java.util.LinkedHashMap;
 public class Server {
     private Controller controller;
     private HttpRequest request;
-    private Socket requestSocket;
     private ServerSocket serverSocket;
     private ShouldLoop serverRunShouldLoop;
 
@@ -22,7 +22,8 @@ public class Server {
         LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
 
         if (serverArgs.path().length() > 0) {
-            directoryList = new FileHandler(serverArgs.path()).listFiles();
+            File[] directory = new File(serverArgs.path()).listFiles();
+            directoryList = new FileHelper(directory).listMap();
         }
 
         IEndpoint[] endpoints = {
@@ -34,36 +35,48 @@ public class Server {
             new MethodOptionsEndpoint(new HttpResponse()),
             new MethodOptions2Endpoint(new HttpResponse()),
             new RedirectEndpoint(new HttpResponse(), serverArgs.port()),
+            new LogsEndpoint(new HttpResponse()),
             new InvalidEndpoint(new HttpResponse()) };
 
         Controller controller = new Controller(endpoints);
         HttpRequest request = new HttpRequest();
-        Server server = new Server(new ShouldLoop(),controller, request);
+
+        ServerSocket serverSocket = null;
+        try {
+            serverSocket = new ServerSocket();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Server server = new Server(new ShouldLoop(), serverSocket,controller, request);
 
         server.run(serverArgs.port());
     }
 
-    public Server(ShouldLoop serverRunShouldLoop, Controller controller, HttpRequest request) {
+    public Server(ShouldLoop serverRunShouldLoop,ServerSocket serverSocket, Controller controller, HttpRequest request) {
         this.controller = controller;
         this.request = request;
         this.serverRunShouldLoop = serverRunShouldLoop;
+        this.serverSocket = serverSocket;
     }
 
     public void run(int port) {
-        this.create(port);
         try {
+            serverSocket.setReuseAddress(true);
+            serverSocket.bind(new InetSocketAddress(port));
             while (serverRunShouldLoop.shouldLoop()) {
-                requestSocket = this.accept();
-                this.request();
-                this.response();
+                Socket requestSocket = serverSocket.accept();
+                this.request(requestSocket);
+                this.response(requestSocket);
             }
-        }
-        finally {
+        } catch (Exception e) {
+            throw new RuntimeException("something went wrong");
+        } finally {
             this.stop();
         }
     }
 
-    protected void stop() {
+    private void stop() {
         try {
             serverSocket.close();
         } catch (IOException e) {
@@ -71,36 +84,19 @@ public class Server {
         }
     }
 
-    protected void create(int port) {
+    private void request(Socket requestSocket) {
+        BufferedReader requestMessage;
+
         try {
-            serverSocket = new ServerSocket();
-            serverSocket.setReuseAddress(true);
-            serverSocket.bind(new InetSocketAddress(port));
+            requestMessage = new BufferedReader(new InputStreamReader(requestSocket.getInputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        request.parseMessage(requestMessage);
     }
 
-    protected Socket accept() {
-        try {
-            return serverSocket.accept();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    protected void request() {
-        String requestString;
-        try {
-            BufferedReader requestMessage = new BufferedReader(new InputStreamReader(requestSocket.getInputStream()));
-            requestString = requestMessage.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        request.parseRequest(requestString);
-    }
-
-    protected void response() {
+    private void response(Socket requestSocket) {
         String response = controller.routeRequest(request);
         try {
             DataOutputStream responseStream = new DataOutputStream(requestSocket.getOutputStream());
