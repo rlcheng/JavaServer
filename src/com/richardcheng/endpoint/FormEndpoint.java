@@ -31,7 +31,7 @@ public class FormEndpoint implements IEndpoint {
             return httpResponse.statusLine("405");
         }
 
-        if (canPost(httpMethod) ^ (canPut(httpMethod))) {
+        if (canPost(httpMethod) || (canPut(httpMethod))) {
             this.data = httpRequest.getData();
         } else if (httpMethod.equals("DELETE")) {
             this.data = "";
