@@ -31,15 +31,20 @@ public class FormEndpoint implements IEndpoint {
             return httpResponse.statusLine("405");
         }
 
-        if (httpMethod.equals("POST") && data.isEmpty()) {
-            this.data = httpRequest.getData();
-        } else if (httpMethod.equals("PUT") && !data.isEmpty()) {
+        if (canPost(httpMethod) ^ (canPut(httpMethod))) {
             this.data = httpRequest.getData();
         } else if (httpMethod.equals("DELETE")) {
             this.data = "";
-            return httpResponse.statusLine(statusCode);
         }
 
         return httpResponse.completeResponse(statusCode, this.data);
+    }
+
+    private boolean canPost(String httpMethod) {
+        return (httpMethod.equals("POST") && data.length() == 0);
+    }
+
+    private boolean canPut(String httpMethod) {
+        return (httpMethod.equals("PUT") && data.length() > 0);
     }
 }
