@@ -105,7 +105,7 @@ public class FormEndpointTest {
     public void route_Returns200Response_Only_IfDELETEMethod() {
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
         MockHttpRequestDelete httpRequest = new MockHttpRequestDelete();
-        String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
         String actualRouteResponse = subject.route(httpRequest);
 
