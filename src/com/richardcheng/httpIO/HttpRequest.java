@@ -12,6 +12,7 @@ public class HttpRequest {
     private String data;
     private String log = "";
     private String auth = "";
+    private String range = "";
 
     public void parseMessage(BufferedReader requestMessage) {
         try {
@@ -24,6 +25,10 @@ public class HttpRequest {
 
                 if (parsed[0].equals("Content-Length:")) {
                     size = Integer.parseInt(parsed[1]);
+                }
+
+                if (parsed[0].equals("Range:")) {
+                    range = parsed[1].replaceAll("bytes=", "");;
                 }
 
                 if (parsed[0].equals("Authorization:")) {
@@ -85,5 +90,9 @@ public class HttpRequest {
 
     public String getAuth() {
         return auth;
+    }
+
+    public String getRange() {
+        return range;
     }
 }

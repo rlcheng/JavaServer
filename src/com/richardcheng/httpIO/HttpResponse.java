@@ -11,6 +11,7 @@ public class HttpResponse {
     {
         reasonPhrases = new Hashtable<>();
         reasonPhrases.put("200", "OK");
+        reasonPhrases.put("206", "Partial Content");
         reasonPhrases.put("302", "Found");
         reasonPhrases.put("401", "Unauthorized");
         reasonPhrases.put("404", "Not Found");

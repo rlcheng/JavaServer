@@ -90,6 +90,22 @@ public class HttpRequestTest {
     }
 
     @Test
+    public void parseMessage_range() {
+        String expectedRange = "0-4";
+        String stream = "GET /partial_content.txt HTTP/1.1\r\nRange: bytes=0-4\r\n\r\n";
+        BufferedReader request = new BufferedReader(
+                new InputStreamReader(
+                        new ByteArrayInputStream(
+                                stream.getBytes(StandardCharsets.UTF_8))));
+        HttpRequest httpRequest = new HttpRequest();
+
+        httpRequest.parseMessage(request);
+        String actualRange = httpRequest.getRange();
+
+        Assert.assertEquals(expectedRange, actualRange);
+    }
+
+    @Test
     public void parseMessage_throwsException() {
         MockBufferReaderThrowsException request = new MockBufferReaderThrowsException(
                 new InputStreamReader(
