@@ -18,7 +18,7 @@ public class CoffeeEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         CoffeeEndpoint subject = new CoffeeEndpoint(new MockHttpResponse());
 

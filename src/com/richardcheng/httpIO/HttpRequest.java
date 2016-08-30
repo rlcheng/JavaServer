@@ -13,6 +13,7 @@ public class HttpRequest {
     private String log = "";
     private String auth = "";
     private String range = "";
+    private String parameters = "";
 
     public void parseMessage(BufferedReader requestMessage) {
         try {
@@ -28,7 +29,7 @@ public class HttpRequest {
                 }
 
                 if (parsed[0].equals("Range:")) {
-                    range = parsed[1].replaceAll("bytes=", "");;
+                    range = parsed[1].replace("bytes=", "");;
                 }
 
                 if (parsed[0].equals("Authorization:")) {
@@ -61,6 +62,16 @@ public class HttpRequest {
         }
         else {
             endpoint = path[1];
+            setParameter();
+        }
+    }
+
+    private void setParameter() {
+        int paramExistAt = endpoint.indexOf("?");
+
+        if (paramExistAt != -1) {
+            parameters = endpoint.substring(paramExistAt, endpoint.length());
+            endpoint = endpoint.replace(parameters, "");
         }
     }
 
@@ -94,5 +105,9 @@ public class HttpRequest {
 
     public String getRange() {
         return range;
+    }
+
+    public String getParameters() {
+        return parameters;
     }
 }

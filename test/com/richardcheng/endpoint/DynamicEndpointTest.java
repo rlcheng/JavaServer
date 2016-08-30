@@ -24,7 +24,7 @@ public class DynamicEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
         directoryList.put("file1", 1);

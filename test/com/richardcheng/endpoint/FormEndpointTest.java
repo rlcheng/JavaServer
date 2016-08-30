@@ -17,7 +17,7 @@ public class FormEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         FormEndpoint subject = new FormEndpoint(new MockHttpResponseForm());
 

@@ -17,7 +17,7 @@ public class TeaEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         TeaEndpoint subject = new TeaEndpoint(new MockHttpResponse());
 

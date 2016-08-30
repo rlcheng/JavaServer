@@ -19,7 +19,7 @@ public class RedirectEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         int port = 5000;
         RedirectEndpoint subject = new RedirectEndpoint(new MockHttpResponse(), port);

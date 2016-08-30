@@ -18,7 +18,7 @@ public class MethodOptionsEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         MethodOptionsEndpoint subject = new MethodOptionsEndpoint(new MockHttpResponseMethodOptions());
 

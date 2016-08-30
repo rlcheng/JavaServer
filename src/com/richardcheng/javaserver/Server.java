@@ -35,6 +35,7 @@ public class Server {
             new MethodOptions2Endpoint(new HttpResponse()),
             new RedirectEndpoint(new HttpResponse(), serverArgs.port()),
             new LogsEndpoint(new HttpResponse()),
+            new ParametersEndpoint(new HttpResponse()),
             new DynamicEndpoint(new HttpResponse(), directoryList, serverArgs.path()),
             new InvalidEndpoint(new HttpResponse()) };
 

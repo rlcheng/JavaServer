@@ -18,7 +18,7 @@ public class RootEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingToMatch";
         RootEndpoint subject = new RootEndpoint(new MockHttpResponseNotFound(), new Presenter());
 
