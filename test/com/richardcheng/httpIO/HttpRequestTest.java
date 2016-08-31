@@ -106,6 +106,22 @@ public class HttpRequestTest {
     }
 
     @Test
+    public void parseMessage_etag() {
+        String expectedEtag = "5c796969877f11c7bb68138d2379c3dc7ca64a96";
+        String stream = "GET /patch-content.txt HTTP/1.1\r\nEtag: \"5c796969877f11c7bb68138d2379c3dc7ca64a96\"\r\n\r\n";
+        BufferedReader request = new BufferedReader(
+                new InputStreamReader(
+                        new ByteArrayInputStream(
+                                stream.getBytes(StandardCharsets.UTF_8))));
+        HttpRequest httpRequest = new HttpRequest();
+
+        httpRequest.parseMessage(request);
+        String actualEtag = httpRequest.getEtag();
+
+        Assert.assertEquals(expectedEtag, actualEtag);
+    }
+
+    @Test
     public void parseMessage_throwsException() {
         MockBufferReaderThrowsException request = new MockBufferReaderThrowsException(
                 new InputStreamReader(

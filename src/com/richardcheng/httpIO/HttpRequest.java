@@ -14,6 +14,7 @@ public class HttpRequest {
     private String auth = "";
     private String range = "";
     private String parameters = "";
+    private String etag = "";
 
     public void parseMessage(BufferedReader requestMessage) {
         try {
@@ -34,6 +35,10 @@ public class HttpRequest {
 
                 if (parsed[0].equals("Authorization:")) {
                     auth = new String(Base64.getDecoder().decode(parsed[2]));
+                }
+
+                if (parsed[0].equals("If-Match:")) {
+                    etag = parsed[1].replace("\"", "");
                 }
             }
 
@@ -109,5 +114,13 @@ public class HttpRequest {
 
     public String getParameters() {
         return parameters;
+    }
+
+    public String getEtag() {
+        return etag;
+    }
+
+    public void resetRange() {
+        range = "";
     }
 }

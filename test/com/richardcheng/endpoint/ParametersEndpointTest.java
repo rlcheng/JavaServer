@@ -31,7 +31,7 @@ public class ParametersEndpointTest {
     public void route_Returns200() {
         ParametersEndpoint subject = new ParametersEndpoint(new MockHttpResponseParameters());
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
-        String expectedResponse = "HTTP/1.1 200 OK\r\n";
+        String expectedResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 2\r\n\r\n\r\n";
 
         String actualResponse = subject.route(httpRequest);
 

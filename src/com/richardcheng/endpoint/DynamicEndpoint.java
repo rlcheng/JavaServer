@@ -26,6 +26,7 @@ public class DynamicEndpoint implements IEndpoint {
 
         textAllowedMethods = new Hashtable<>();
         textAllowedMethods.put("GET", "200");
+        textAllowedMethods.put("PATCH", "204");
 
         endpointType = new Hashtable<>();
         endpointType.put("file", textAllowedMethods);
@@ -57,19 +58,27 @@ public class DynamicEndpoint implements IEndpoint {
         String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
         String message = "";
+        String encodedMessage = "";
 
         if (statusCode == null) {
             return httpResponse.statusLine("405");
         }
 
+        FileReadHelper fileReadHelper = new FileReadHelper(path + fileName);
         if (httpRequest.getRange().length() > 0) {
             statusCode = "206";
-            FileReadHelper fileReadHelper = new FileReadHelper(path + fileName);
             fileReadHelper.parseRange(httpRequest.getRange());
-            message = fileReadHelper.read();
-        } else {
-            FileReadHelper fileReadHelper = new FileReadHelper(path + fileName);
-            message = fileReadHelper.read();
+            httpRequest.resetRange(); //TODO: Rethink this please. why are we using the same instance and end up having this issue???
+        }
+        message = fileReadHelper.read();
+
+        if (httpRequest.getEtag().length() > 0) {
+            encodedMessage = new SHA1Encoder().encode(message);
+
+            if (encodedMessage.equals(httpRequest.getEtag())) {
+                new FileWriteHelper(path + fileName).write(httpRequest.getData());
+                return httpResponse.statusLine(statusCode);
+            }
         }
 
         return httpResponse.completeResponse(statusCode, message);

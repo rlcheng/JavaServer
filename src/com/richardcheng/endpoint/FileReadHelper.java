@@ -8,12 +8,12 @@ import java.io.IOException;
 public class FileReadHelper {
     private File file;
     private int fileSize;
-    public int start = 0;
-    public int stop = 0;
-    public int size;
+    private int start = 0;
+    private int stop = 0;
+    private int size;
 
     //TO-DO move file out of here so you can do Dependency Injection!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public FileReadHelper(String path){
+    public FileReadHelper(String path) {
         this.file = new File(path);
         fileSize = (int)(long)file.length();
         size = fileSize;
