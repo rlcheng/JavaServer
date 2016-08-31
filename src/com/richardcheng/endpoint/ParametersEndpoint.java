@@ -28,14 +28,10 @@ public class ParametersEndpoint implements IEndpoint {
             return httpResponse.statusLine("405");
         }
 
-        String params = httpRequest.getParameters();
+        String encodedParams = httpRequest.getParameters();
 
-        PercentDecoder decoder = new PercentDecoder();
-        String decoded = params.replace("?", "");
-        decoded = decoded.replaceAll("&", " ");
-        decoded = decoded.replaceAll("=", " = ");
-        decoded = decoder.decode(decoded);
+        String decodedParams = new PercentDecoder().decode(encodedParams);
 
-        return httpResponse.completeResponse(statusCode, decoded + "\r\n");
+        return httpResponse.completeResponse(statusCode, decodedParams + "\r\n");
     }
 }

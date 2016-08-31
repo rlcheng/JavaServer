@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class PartialReadFileHelper {
+public class FileReadHelper {
     private File file;
     private int fileSize;
     public int start = 0;
@@ -13,7 +13,7 @@ public class PartialReadFileHelper {
     public int size;
 
     //TO-DO move file out of here so you can do Dependency Injection!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public PartialReadFileHelper(String path){
+    public FileReadHelper(String path){
         this.file = new File(path);
         fileSize = (int)(long)file.length();
         size = fileSize;

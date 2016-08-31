@@ -3,11 +3,11 @@ package com.richardcheng.endpoint;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class PartialReadFileHelperTest {
+public class FileReadHelperTest {
     @Test
     public void readRange_returnsRangeRead() {
         String path = "/Users/richardcheng/Documents/cob_spec/public/partial_content.txt";
-        PartialReadFileHelper subject = new PartialReadFileHelper(path);
+        FileReadHelper subject = new FileReadHelper(path);
 
         subject.parseRange("0-4");
         String actual = subject.read();

@@ -12,19 +12,14 @@ public class DynamicEndpoint implements IEndpoint {
     private String path;
     private String fileName;
     private Hashtable<String, String> allowedMethods;
-    private Hashtable<String, String> fileAllowedMethods;
     private Hashtable<String, String> imageAllowedMethods;
     private Hashtable<String, String> textAllowedMethods;
     private Hashtable<String, Hashtable<String, String>> endpointType;
-    private String tempEndpointType = "";
 
     public DynamicEndpoint (HttpResponse httpResponse, LinkedHashMap<String, Object> directoryList, String path) {
         this.httpResponse = httpResponse;
         this.directoryList = directoryList;
         this.path = path;
-
-        fileAllowedMethods = new Hashtable<>();
-        fileAllowedMethods.put("GET", "200");
 
         imageAllowedMethods = new Hashtable<>();
         imageAllowedMethods.put("GET", "200");
@@ -33,7 +28,7 @@ public class DynamicEndpoint implements IEndpoint {
         textAllowedMethods.put("GET", "200");
 
         endpointType = new Hashtable<>();
-        endpointType.put("file", fileAllowedMethods);
+        endpointType.put("file", textAllowedMethods);
         endpointType.put("gif", imageAllowedMethods);
         endpointType.put("jpeg", imageAllowedMethods);
         endpointType.put("png", imageAllowedMethods);
@@ -44,7 +39,6 @@ public class DynamicEndpoint implements IEndpoint {
         if (directoryList.containsKey(endpoint)) {
             allowedMethods = endpointType.get(getFileExtension(endpoint));
             fileName = endpoint;
-            tempEndpointType = getFileExtension(endpoint);
             return true;
         }
 
@@ -70,12 +64,12 @@ public class DynamicEndpoint implements IEndpoint {
 
         if (httpRequest.getRange().length() > 0) {
             statusCode = "206";
-            PartialReadFileHelper partialReadFileHelper = new PartialReadFileHelper(path + fileName);
-            partialReadFileHelper.parseRange(httpRequest.getRange());
-            message = partialReadFileHelper.read();
+            FileReadHelper fileReadHelper = new FileReadHelper(path + fileName);
+            fileReadHelper.parseRange(httpRequest.getRange());
+            message = fileReadHelper.read();
         } else {
-            PartialReadFileHelper partialReadFileHelper = new PartialReadFileHelper(path + fileName);
-            message = partialReadFileHelper.read();
+            FileReadHelper fileReadHelper = new FileReadHelper(path + fileName);
+            message = fileReadHelper.read();
         }
 
         return httpResponse.completeResponse(statusCode, message);

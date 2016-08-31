@@ -42,10 +42,26 @@ public class PercentDecoder {
     public String decode(String encoded) {
         String decoded = encoded;
 
+        decoded = stripQueryChar(decoded);
+        decoded = replaceSeparator(decoded);
+        decoded = formatEqualSign(decoded);
+
         for(String encodedSymbol: dictionary.keySet()) {
             decoded = decoded.replaceAll(encodedSymbol, dictionary.get(encodedSymbol));
         }
 
         return decoded;
+    }
+
+    private String stripQueryChar(String string) {
+        return string.replace("?", "");
+    }
+
+    private String replaceSeparator(String string) {
+        return string.replaceAll("&", " ");
+    }
+
+    private String formatEqualSign(String string) {
+        return string.replaceAll("=", " = ");
     }
 }
