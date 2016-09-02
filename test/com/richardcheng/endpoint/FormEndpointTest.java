@@ -32,7 +32,7 @@ public class FormEndpointTest {
         MockHttpRequestPost httpRequest = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 9\r\n\r\ndata=odey";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -45,9 +45,9 @@ public class FormEndpointTest {
         MockHttpRequestPost secondPostHttpRequest = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
 
-        String firstRouteResponse = subject.route(postHttpRequest);
-        String secondRouteResponse = subject.route(putHttpRequest);
-        String actualRouteResponse = subject.route(secondPostHttpRequest);
+        String firstRouteResponse = subject.route(postHttpRequest).toString();
+        String secondRouteResponse = subject.route(putHttpRequest).toString();
+        String actualRouteResponse = subject.route(secondPostHttpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
         Assert.assertEquals(secondRouteResponse, actualRouteResponse);
@@ -61,8 +61,8 @@ public class FormEndpointTest {
         MockHttpRequestPost httpRequestPost = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
 
-        String setupResponse = subject.route(httpRequestPost);
-        String actualRouteResponse = subject.route(httpRequest);
+        String setupResponse = subject.route(httpRequestPost).toString();
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
         Assert.assertNotEquals(setupResponse, actualRouteResponse);
@@ -74,7 +74,7 @@ public class FormEndpointTest {
         MockHttpRequestPut httpRequest = new MockHttpRequestPut();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -85,7 +85,7 @@ public class FormEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -96,7 +96,7 @@ public class FormEndpointTest {
         MockHttpRequestNoMatch httpRequest = new MockHttpRequestNoMatch();
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -107,7 +107,7 @@ public class FormEndpointTest {
         MockHttpRequestDelete httpRequest = new MockHttpRequestDelete();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

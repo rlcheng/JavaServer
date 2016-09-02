@@ -14,11 +14,11 @@ public class LogsEndpoint implements IEndpoint {
         return endpoint.equals("logs");
     }
 
-    public String route(HttpRequest httpRequest) {
+    public byte[] route(HttpRequest httpRequest) {
         if (httpRequest.getAuth().equals("admin:hunter2")) {
-            return httpResponse.completeResponse("200", httpRequest.getLog());
+            return httpResponse.completeResponse("200", httpRequest.getLog()).getBytes();
         }
 
-        return httpResponse.statusLine("401") + httpResponse.authHeader();
+        return (httpResponse.statusLine("401") + httpResponse.authHeader()).getBytes();
     }
 }

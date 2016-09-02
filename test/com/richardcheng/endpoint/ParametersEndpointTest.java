@@ -33,7 +33,7 @@ public class ParametersEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 2\r\n\r\n\r\n";
 
-        String actualResponse = subject.route(httpRequest);
+        String actualResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedResponse, actualResponse);
     }

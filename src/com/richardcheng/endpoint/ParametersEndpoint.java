@@ -20,18 +20,18 @@ public class ParametersEndpoint implements IEndpoint {
         return endpoint.equals("parameters");
     }
 
-    public String route(HttpRequest httpRequest) {
+    public byte[] route(HttpRequest httpRequest) {
         String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
 
         if (statusCode == null) {
-            return httpResponse.statusLine("405");
+            return httpResponse.statusLine("405").getBytes();
         }
 
         String encodedParams = httpRequest.getParameters();
 
         String decodedParams = new PercentDecoder().decode(encodedParams);
 
-        return httpResponse.completeResponse(statusCode, decodedParams + "\r\n");
+        return httpResponse.completeResponse(statusCode, decodedParams + "\r\n").getBytes();
     }
 }

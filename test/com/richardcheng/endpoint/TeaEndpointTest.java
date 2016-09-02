@@ -32,7 +32,7 @@ public class TeaEndpointTest {
         MockHttpRequestPost httpRequest = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

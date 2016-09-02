@@ -33,7 +33,7 @@ public class MethodOptionsEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nAllow: GET,PUT,OPTIONS,HEAD,POST\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -44,7 +44,7 @@ public class MethodOptionsEndpointTest {
         MockHttpRequestNoMatch httpRequest = new MockHttpRequestNoMatch();
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

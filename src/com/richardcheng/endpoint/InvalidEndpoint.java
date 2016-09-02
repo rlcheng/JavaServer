@@ -14,7 +14,7 @@ public class InvalidEndpoint implements IEndpoint {
         return true;
     }
 
-    public String route(HttpRequest httpRequest) {
-        return httpResponse.statusLine("404");
+    public byte[] route(HttpRequest httpRequest) {
+        return httpResponse.statusLine("404").getBytes();
     }
 }

@@ -33,7 +33,7 @@ public class CoffeeEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedBodyLength = "12";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertTrue(actualRouteResponse.contains("HTTP/1.1 418 I'm a teapot"));
         Assert.assertTrue(actualRouteResponse.contains(expectedBodyLength));

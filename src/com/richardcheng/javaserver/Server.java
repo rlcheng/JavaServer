@@ -98,10 +98,10 @@ public class Server {
     }
 
     private void response(Socket requestSocket) {
-        String response = controller.routeRequest(request);
+        byte[] response = controller.routeRequest(request);
         try {
             DataOutputStream responseStream = new DataOutputStream(requestSocket.getOutputStream());
-            responseStream.writeBytes(response);
+            responseStream.write(response);
             responseStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);

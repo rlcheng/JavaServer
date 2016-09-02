@@ -22,7 +22,7 @@ public class InvalidEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 404 Not Found\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

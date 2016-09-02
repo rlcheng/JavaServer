@@ -63,14 +63,14 @@ public class DynamicEndpoint implements IEndpoint {
         return nameSplit[1];
     }
 
-    public String route(HttpRequest httpRequest) {
+    public byte[] route(HttpRequest httpRequest) {
         String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
         String message = "";
         String encodedMessage = "";
 
         if (statusCode == null) {
-            return httpResponse.statusLine("405");
+            return httpResponse.statusLine("405").getBytes();
         }
 
         FileReadHelper fileReadHelper = new FileReadHelper(path + fileName);
@@ -84,7 +84,11 @@ public class DynamicEndpoint implements IEndpoint {
         if (isText) {
             message = new String(contentBytes);
         } else {
-            return httpResponse.imageHeaderResponse(statusCode, fileType, contentBytes.length);
+            byte[] imageHeader = httpResponse.imageHeaderResponse(statusCode, fileType, contentBytes.length).getBytes();
+            byte[] completeResponse = new byte[imageHeader.length + contentBytes.length];
+            System.arraycopy(imageHeader, 0, completeResponse, 0, imageHeader.length);
+            System.arraycopy(contentBytes, 0, completeResponse, imageHeader.length, contentBytes.length);
+            return completeResponse;
         }
 
         if (httpRequest.getEtag().length() > 0) {
@@ -92,10 +96,10 @@ public class DynamicEndpoint implements IEndpoint {
 
             if (encodedMessage.equals(httpRequest.getEtag())) {
                 new FileWriteHelper(path + fileName).write(httpRequest.getData());
-                return httpResponse.statusLine(statusCode);
+                return httpResponse.statusLine(statusCode).getBytes();
             }
         }
 
-        return httpResponse.completeResponse(statusCode, message);
+        return httpResponse.completeResponse(statusCode, message).getBytes();
     }
 }

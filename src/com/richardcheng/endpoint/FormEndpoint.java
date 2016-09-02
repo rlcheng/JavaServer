@@ -23,12 +23,12 @@ public class FormEndpoint implements IEndpoint {
         return endpoint.equals("form");
     }
 
-    public String route(HttpRequest httpRequest) {
+    public byte[] route(HttpRequest httpRequest) {
         String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
 
         if (statusCode == null) {
-            return httpResponse.statusLine("405");
+            return httpResponse.statusLine("405").getBytes();
         }
 
         if (canPost(httpMethod) || (canPut(httpMethod))) {
@@ -37,7 +37,7 @@ public class FormEndpoint implements IEndpoint {
             this.data = "";
         }
 
-        return httpResponse.completeResponse(statusCode, this.data);
+        return httpResponse.completeResponse(statusCode, this.data).getBytes();
     }
 
     private boolean canPost(String httpMethod) {
