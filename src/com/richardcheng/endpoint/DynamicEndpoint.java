@@ -15,6 +15,8 @@ public class DynamicEndpoint implements IEndpoint {
     private Hashtable<String, String> imageAllowedMethods;
     private Hashtable<String, String> textAllowedMethods;
     private Hashtable<String, Hashtable<String, String>> endpointType;
+    private String fileType;
+    private boolean isText;
 
     public DynamicEndpoint (HttpResponse httpResponse, LinkedHashMap<String, Object> directoryList, String path) {
         this.httpResponse = httpResponse;
@@ -38,8 +40,15 @@ public class DynamicEndpoint implements IEndpoint {
 
     public boolean match(String endpoint) {
         if (directoryList.containsKey(endpoint)) {
-            allowedMethods = endpointType.get(getFileExtension(endpoint));
+            fileType = getFileExtension(endpoint);
+            allowedMethods = endpointType.get(fileType);
             fileName = endpoint;
+            if (fileType.equals("file") || fileType.equals("txt")) {
+                isText = true;
+            } else {
+                isText = false;
+            }
+
             return true;
         }
 
@@ -68,12 +77,18 @@ public class DynamicEndpoint implements IEndpoint {
         if (httpRequest.getRange().length() > 0) {
             statusCode = "206";
             fileReadHelper.parseRange(httpRequest.getRange());
-            httpRequest.resetRange(); //TODO: Rethink this please. why are we using the same instance and end up having this issue???
+            httpRequest.resetRange();
         }
-        message = fileReadHelper.read();
+        byte[] contentBytes = fileReadHelper.readBytes();
+
+        if (isText) {
+            message = new String(contentBytes);
+        } else {
+            return httpResponse.imageHeaderResponse(statusCode, fileType, contentBytes.length);
+        }
 
         if (httpRequest.getEtag().length() > 0) {
-            encodedMessage = new SHA1Encoder().encode(message);
+            encodedMessage = new SHAEncoder().encode(message, "SHA1");
 
             if (encodedMessage.equals(httpRequest.getEtag())) {
                 new FileWriteHelper(path + fileName).write(httpRequest.getData());

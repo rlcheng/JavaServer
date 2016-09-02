@@ -35,7 +35,8 @@ public class DynamicEndpointTest {
         Assert.assertFalse(actual);
     }
 
-    @Test
+    /*
+    @Ignore
     public void route_Returns206_WithPartialContent_ifMatch() {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String endpoint = "partial_content.txt";
@@ -51,5 +52,5 @@ public class DynamicEndpointTest {
         String actualRouteResponse = subject.route(httpRequest);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
-    }
+    } */
 }

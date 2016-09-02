@@ -108,7 +108,7 @@ public class HttpRequestTest {
     @Test
     public void parseMessage_etag() {
         String expectedEtag = "5c796969877f11c7bb68138d2379c3dc7ca64a96";
-        String stream = "GET /patch-content.txt HTTP/1.1\r\nEtag: \"5c796969877f11c7bb68138d2379c3dc7ca64a96\"\r\n\r\n";
+        String stream = "GET /patch-content.txt HTTP/1.1\r\nIf-Match: \"5c796969877f11c7bb68138d2379c3dc7ca64a96\"\r\n\r\n";
         BufferedReader request = new BufferedReader(
                 new InputStreamReader(
                         new ByteArrayInputStream(

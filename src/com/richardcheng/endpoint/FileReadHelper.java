@@ -1,9 +1,6 @@
 package com.richardcheng.endpoint;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class FileReadHelper {
     private File file;
@@ -12,7 +9,6 @@ public class FileReadHelper {
     private int stop = 0;
     private int size;
 
-    //TO-DO move file out of here so you can do Dependency Injection!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public FileReadHelper(String path) {
         this.file = new File(path);
         fileSize = (int)(long)file.length();
@@ -56,5 +52,24 @@ public class FileReadHelper {
         }
 
         return new String(charBuffer);
+    }
+
+    public byte[] readBytes() {
+        FileInputStream fileInputStream;
+        byte[] content = new byte[size];
+
+        try {
+            fileInputStream = new FileInputStream(file);
+
+            fileInputStream.skip(start);
+            fileInputStream.read(content);
+
+            fileInputStream.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return content;
     }
 }

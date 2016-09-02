@@ -61,4 +61,16 @@ public class HttpResponse {
     public String completeResponse(String code, String message) {
         return statusLine(code) + entityHeader(message.length()) + CRLF + message;
     }
+
+    private String imageContentType(String fileType) {
+        return "Content-Type:" + SP + "image/" + fileType + CRLF;
+    }
+
+    private String imageEntityHeader(String fileType, int imageSize) {
+        return imageContentType(fileType) + contentLength(imageSize);
+    }
+
+    public String imageHeaderResponse(String code, String fileType, int length) {
+        return statusLine(code) + imageEntityHeader(fileType, length) + CRLF;
+    }
 }

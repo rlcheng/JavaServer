@@ -2,16 +2,16 @@ package com.richardcheng.endpoint;
 
 import java.security.MessageDigest;
 
-public class SHA1Encoder {
-    public String encode(String plainText) {
+public class SHAEncoder {
+    public String encode(String plainText, String algorithmType) {
         String encoded = "";
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
+            MessageDigest messageDigest = MessageDigest.getInstance(algorithmType);
             messageDigest.update(plainText.getBytes());
             byte[] bytes = messageDigest.digest();
             encoded = bytesToHexString(bytes);
         } catch (Exception e) {
-
+            throw new RuntimeException(e);
         }
         return encoded;
     }
