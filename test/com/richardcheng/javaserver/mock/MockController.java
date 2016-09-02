@@ -9,7 +9,7 @@ public class MockController extends Controller {
         super(endpoints);
     }
 
-    public String routeRequest(HttpRequest request) {
-        return "response";
+    public byte[] routeRequest(HttpRequest request) {
+        return "response".getBytes();
     }
 }

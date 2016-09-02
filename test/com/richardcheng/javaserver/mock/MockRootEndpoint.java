@@ -15,7 +15,7 @@ public class MockRootEndpoint extends RootEndpoint {
         return true;
     }
 
-    public String route(HttpRequest httpRequest) {
-        return "OK";
+    public byte[] route(HttpRequest httpRequest) {
+        return "OK".getBytes();
     }
 }

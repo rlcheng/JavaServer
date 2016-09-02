@@ -14,7 +14,7 @@ public class TeaEndpoint implements IEndpoint {
         return endpoint.equals("tea");
     }
 
-    public String route(HttpRequest httpRequest) {
-        return httpResponse.statusLine("200");
+    public byte[] route(HttpRequest httpRequest) {
+        return httpResponse.statusLine("200").getBytes();
     }
 }

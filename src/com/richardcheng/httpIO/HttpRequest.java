@@ -12,6 +12,9 @@ public class HttpRequest {
     private String data;
     private String log = "";
     private String auth = "";
+    private String range = "";
+    private String parameters = "";
+    private String etag = "";
 
     public void parseMessage(BufferedReader requestMessage) {
         try {
@@ -26,8 +29,16 @@ public class HttpRequest {
                     size = Integer.parseInt(parsed[1]);
                 }
 
+                if (parsed[0].equals("Range:")) {
+                    range = parsed[1].replace("bytes=", "");;
+                }
+
                 if (parsed[0].equals("Authorization:")) {
                     auth = new String(Base64.getDecoder().decode(parsed[2]));
+                }
+
+                if (parsed[0].equals("If-Match:")) {
+                    etag = parsed[1].replace("\"", "");
                 }
             }
 
@@ -56,6 +67,16 @@ public class HttpRequest {
         }
         else {
             endpoint = path[1];
+            setParameter();
+        }
+    }
+
+    private void setParameter() {
+        int paramExistAt = endpoint.indexOf("?");
+
+        if (paramExistAt != -1) {
+            parameters = endpoint.substring(paramExistAt, endpoint.length());
+            endpoint = endpoint.replace(parameters, "");
         }
     }
 
@@ -85,5 +106,21 @@ public class HttpRequest {
 
     public String getAuth() {
         return auth;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public String getParameters() {
+        return parameters;
+    }
+
+    public String getEtag() {
+        return etag;
+    }
+
+    public void resetRange() {
+        range = "";
     }
 }

@@ -19,7 +19,7 @@ public class RedirectEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         int port = 5000;
         RedirectEndpoint subject = new RedirectEndpoint(new MockHttpResponse(), port);
@@ -36,7 +36,7 @@ public class RedirectEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 302 Found\r\nLocation: http://localhost:5000/\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

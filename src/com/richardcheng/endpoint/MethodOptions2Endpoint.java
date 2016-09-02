@@ -20,13 +20,13 @@ public class MethodOptions2Endpoint implements IEndpoint {
         return endpoint.equals("method_options2");
     }
 
-    public String route(HttpRequest httpRequest) {
+    public byte[] route(HttpRequest httpRequest) {
         String statusCode = allowedMethods.get(httpRequest.getMethod());
 
         if (statusCode == null) {
-            return httpResponse.statusLine("405");
+            return httpResponse.statusLine("405").getBytes();
         }
 
-        return httpResponse.statusLine("200") + httpResponse.allowHeader(allowedMethods);
+        return (httpResponse.statusLine("200") + httpResponse.allowHeader(allowedMethods)).getBytes();
     }
 }

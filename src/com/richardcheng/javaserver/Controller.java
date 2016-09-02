@@ -10,7 +10,7 @@ public class Controller {
         this.endpoints = endpoints;
     }
 
-    public String routeRequest(HttpRequest request) {
+    public byte[] routeRequest(HttpRequest request) {
         String requestEndpoint = request.getEndpoint();
 
         for(IEndpoint endpoint : endpoints) {

@@ -20,7 +20,7 @@ public class LogsEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         LogsEndpoint subject = new LogsEndpoint(new MockHttpResponse());
 
@@ -35,7 +35,7 @@ public class LogsEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nGET /log HTTP/1.1\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -46,7 +46,7 @@ public class LogsEndpointTest {
         MockHttpRequestGetNoAuth httpRequest = new MockHttpRequestGetNoAuth();
         String expectedRouteResponse = "HTTP/1.1 401 Unauthorized\r\nWWW-Authenticate: Basic\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

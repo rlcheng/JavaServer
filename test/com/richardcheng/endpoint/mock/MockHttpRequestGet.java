@@ -18,4 +18,8 @@ public class MockHttpRequestGet extends HttpRequest {
     public String getAuth() {
         return "admin:hunter2";
     }
+
+    public String getRange() {
+        return "0-4";
+    }
 }

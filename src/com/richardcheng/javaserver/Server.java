@@ -27,8 +27,7 @@ public class Server {
         }
 
         IEndpoint[] endpoints = {
-            new RootEndpoint(new HttpResponse(),
-            new Presenter(directoryList)),
+            new RootEndpoint(new HttpResponse(), new Presenter(directoryList)),
             new FormEndpoint(new HttpResponse()),
             new CoffeeEndpoint(new HttpResponse()),
             new TeaEndpoint(new HttpResponse()),
@@ -36,6 +35,8 @@ public class Server {
             new MethodOptions2Endpoint(new HttpResponse()),
             new RedirectEndpoint(new HttpResponse(), serverArgs.port()),
             new LogsEndpoint(new HttpResponse()),
+            new ParametersEndpoint(new HttpResponse()),
+            new DynamicEndpoint(new HttpResponse(), directoryList, serverArgs.path()),
             new InvalidEndpoint(new HttpResponse()) };
 
         Controller controller = new Controller(endpoints);
@@ -97,10 +98,10 @@ public class Server {
     }
 
     private void response(Socket requestSocket) {
-        String response = controller.routeRequest(request);
+        byte[] response = controller.routeRequest(request);
         try {
             DataOutputStream responseStream = new DataOutputStream(requestSocket.getOutputStream());
-            responseStream.writeBytes(response);
+            responseStream.write(response);
             responseStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);

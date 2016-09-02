@@ -17,7 +17,7 @@ public class TeaEndpointTest {
     }
 
     @Test
-    public void match_ReturnsFalse_if_StringMatch() {
+    public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
         TeaEndpoint subject = new TeaEndpoint(new MockHttpResponse());
 
@@ -32,7 +32,7 @@ public class TeaEndpointTest {
         MockHttpRequestPost httpRequest = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest);
+        String actualRouteResponse = subject.route(httpRequest).toString();
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

@@ -11,6 +11,8 @@ public class HttpResponse {
     {
         reasonPhrases = new Hashtable<>();
         reasonPhrases.put("200", "OK");
+        reasonPhrases.put("204", "No Content");
+        reasonPhrases.put("206", "Partial Content");
         reasonPhrases.put("302", "Found");
         reasonPhrases.put("401", "Unauthorized");
         reasonPhrases.put("404", "Not Found");
@@ -58,5 +60,17 @@ public class HttpResponse {
 
     public String completeResponse(String code, String message) {
         return statusLine(code) + entityHeader(message.length()) + CRLF + message;
+    }
+
+    private String imageContentType(String fileType) {
+        return "Content-Type:" + SP + "image/" + fileType + CRLF;
+    }
+
+    private String imageEntityHeader(String fileType, int imageSize) {
+        return imageContentType(fileType) + contentLength(imageSize);
+    }
+
+    public String imageHeaderResponse(String code, String fileType, int length) {
+        return statusLine(code) + imageEntityHeader(fileType, length) + CRLF;
     }
 }

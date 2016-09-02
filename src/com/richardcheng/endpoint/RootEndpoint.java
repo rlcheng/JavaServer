@@ -23,18 +23,18 @@ public class RootEndpoint implements IEndpoint {
         return endpoint.equals("root");
     }
 
-    public String route(HttpRequest httpRequest) {
+    public byte[] route(HttpRequest httpRequest) {
         String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
 
         if (statusCode == null) {
-            return httpResponse.statusLine("405");
+            return httpResponse.statusLine("405").getBytes();
         }
 
         if (httpMethod.equals("HEAD")) {
-            return httpResponse.statusLine(statusCode);
+            return httpResponse.statusLine(statusCode).getBytes();
         }
 
-        return httpResponse.completeResponse(statusCode, presenter.view());
+        return httpResponse.completeResponse(statusCode, presenter.view()).getBytes();
     }
 }
