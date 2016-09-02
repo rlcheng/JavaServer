@@ -2,7 +2,6 @@ package com.richardcheng.endpoint;
 
 import com.richardcheng.endpoint.mock.MockHttpRequestGet;
 import com.richardcheng.endpoint.mock.MockHttpResponseParameters;
-import com.richardcheng.javaserver.mock.MockHttpRequest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,7 +32,8 @@ public class ParametersEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 2\r\n\r\n\r\n";
 
-        String actualResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualResponse = new String(byteArray);
 
         Assert.assertEquals(expectedResponse, actualResponse);
     }

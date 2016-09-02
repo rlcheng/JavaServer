@@ -2,15 +2,15 @@ package com.richardcheng.endpoint;
 
 import com.richardcheng.endpoint.mock.MockHttpRequestGet;
 import com.richardcheng.endpoint.mock.MockHttpRequestNoMatch;
-import com.richardcheng.endpoint.mock.MockHttpResponseMethodOptions2;
+import com.richardcheng.endpoint.mock.MockHttpResponseMethodOptions;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MethodOptions2EndpointTest {
+public class MethodOptionsEndpointTest {
     @Test
     public void match_ReturnsTrue_if_StringMatch() {
-        String endpoint = "method_options2";
-        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
+        String endpoint = "method_options";
+        MethodOptionsEndpoint subject = new MethodOptionsEndpoint(new MockHttpResponseMethodOptions());
 
         boolean actual = subject.match(endpoint);
 
@@ -20,7 +20,7 @@ public class MethodOptions2EndpointTest {
     @Test
     public void match_ReturnsFalse_if_StringNotMatch() {
         String endpoint = "notGoingtoMatch";
-        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
+        MethodOptionsEndpoint subject = new MethodOptionsEndpoint(new MockHttpResponseMethodOptions());
 
         boolean actual = subject.match(endpoint);
 
@@ -29,22 +29,24 @@ public class MethodOptions2EndpointTest {
 
     @Test
     public void route_Returns200Response_IfMethodMatch() {
-        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
+        MethodOptionsEndpoint subject = new MethodOptionsEndpoint(new MockHttpResponseMethodOptions());
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
-        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nAllow: GET,OPTIONS\r\n";
+        String expectedRouteResponse = "HTTP/1.1 200 OK\r\nAllow: GET,PUT,OPTIONS,HEAD,POST\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
 
     @Test
     public void route_Returns405Response_IfNo_MethodMatch() {
-        MethodOptions2Endpoint subject = new MethodOptions2Endpoint(new MockHttpResponseMethodOptions2());
+        MethodOptionsEndpoint subject = new MethodOptionsEndpoint(new MockHttpResponseMethodOptions());
         MockHttpRequestNoMatch httpRequest = new MockHttpRequestNoMatch();
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

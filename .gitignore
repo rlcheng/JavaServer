@@ -3,3 +3,5 @@ out/
 .idea/
 lib/
 src/META-INF/
+/target
+JavaServer.iml

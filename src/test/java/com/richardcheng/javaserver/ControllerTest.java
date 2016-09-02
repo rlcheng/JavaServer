@@ -17,7 +17,8 @@ public class ControllerTest {
         Controller subject = new Controller(endpoints);
         String expectedResponse = "OK";
 
-        String actualResponse = subject.routeRequest(request).toString();
+        byte[] byteArray = subject.routeRequest(request);
+        String actualResponse = new String(byteArray);
 
         Assert.assertEquals(expectedResponse, actualResponse);
     }
@@ -28,7 +29,7 @@ public class ControllerTest {
         IEndpoint[] endpoints = { new MockRootEndpointNoMatch(new MockHttpResponse(), new Presenter()) };
         Controller subject = new Controller(endpoints);
 
-        String actualResponse = subject.routeRequest(request).toString();
+        byte[] actualResponse = subject.routeRequest(request);
 
         Assert.assertNull(actualResponse);
     }

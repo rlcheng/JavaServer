@@ -1,6 +1,5 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.endpoint.mock.MockHttpRequestGet;
 import com.richardcheng.endpoint.mock.MockHttpResponsePartial;
 import com.richardcheng.httpIO.mock.MockHttpResponse;
 import org.junit.Assert;
