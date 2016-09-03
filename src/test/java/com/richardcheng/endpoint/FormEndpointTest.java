@@ -1,7 +1,6 @@
 package com.richardcheng.endpoint;
 
 import com.richardcheng.endpoint.mock.*;
-import com.richardcheng.javaserver.mock.MockHttpRequest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,7 +31,8 @@ public class FormEndpointTest {
         MockHttpRequestPost httpRequest = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 9\r\n\r\ndata=odey";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -45,9 +45,12 @@ public class FormEndpointTest {
         MockHttpRequestPost secondPostHttpRequest = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
 
-        String firstRouteResponse = subject.route(postHttpRequest).toString();
-        String secondRouteResponse = subject.route(putHttpRequest).toString();
-        String actualRouteResponse = subject.route(secondPostHttpRequest).toString();
+        byte[] byteArray = subject.route(postHttpRequest);
+        String firstRouteResponse = new String(byteArray);
+        byteArray = subject.route(putHttpRequest);
+        String secondRouteResponse = new String(byteArray);
+        byteArray = subject.route(secondPostHttpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
         Assert.assertEquals(secondRouteResponse, actualRouteResponse);
@@ -61,8 +64,11 @@ public class FormEndpointTest {
         MockHttpRequestPost httpRequestPost = new MockHttpRequestPost();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 13\r\n\r\ndata=garfield";
 
-        String setupResponse = subject.route(httpRequestPost).toString();
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequestPost);
+
+        String setupResponse = new String(byteArray);
+        byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
         Assert.assertNotEquals(setupResponse, actualRouteResponse);
@@ -74,7 +80,8 @@ public class FormEndpointTest {
         MockHttpRequestPut httpRequest = new MockHttpRequestPut();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -85,7 +92,8 @@ public class FormEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -96,7 +104,8 @@ public class FormEndpointTest {
         MockHttpRequestNoMatch httpRequest = new MockHttpRequestNoMatch();
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -107,7 +116,8 @@ public class FormEndpointTest {
         MockHttpRequestDelete httpRequest = new MockHttpRequestDelete();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

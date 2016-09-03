@@ -1,7 +1,7 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.httpIO.HttpRequest;
 import com.richardcheng.httpIO.HttpResponse;
+import com.richardcheng.httpIO.HttpRequest;
 
 public class LogsEndpoint implements IEndpoint {
     private HttpResponse httpResponse;

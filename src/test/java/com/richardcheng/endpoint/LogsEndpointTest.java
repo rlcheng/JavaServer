@@ -4,7 +4,6 @@ import com.richardcheng.endpoint.mock.MockHttpRequestGet;
 import com.richardcheng.endpoint.mock.MockHttpRequestGetNoAuth;
 import com.richardcheng.endpoint.mock.MockHttpResponseAuth;
 import com.richardcheng.httpIO.mock.MockHttpResponse;
-import com.richardcheng.javaserver.mock.MockHttpRequest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,7 +34,8 @@ public class LogsEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\nGET /log HTTP/1.1\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -46,7 +46,8 @@ public class LogsEndpointTest {
         MockHttpRequestGetNoAuth httpRequest = new MockHttpRequestGetNoAuth();
         String expectedRouteResponse = "HTTP/1.1 401 Unauthorized\r\nWWW-Authenticate: Basic\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }

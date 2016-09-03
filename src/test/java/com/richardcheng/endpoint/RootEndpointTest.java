@@ -1,7 +1,6 @@
 package com.richardcheng.endpoint;
 
 import com.richardcheng.endpoint.mock.*;
-import com.richardcheng.javaserver.mock.MockHttpRequest;
 import com.richardcheng.presenter.Presenter;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,7 +32,8 @@ public class RootEndpointTest {
         MockHttpRequestGet httpRequest = new MockHttpRequestGet();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertTrue(actualRouteResponse.contains(expectedRouteResponse));
         Assert.assertTrue(actualRouteResponse.contains("href"));
@@ -46,7 +46,8 @@ public class RootEndpointTest {
         MockHttpRequestHead httpRequest = new MockHttpRequestHead();
         String expectedRouteResponse = "HTTP/1.1 200 OK\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
@@ -57,7 +58,8 @@ public class RootEndpointTest {
         MockHttpRequestPut httpRequest = new MockHttpRequestPut();
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
-        String actualRouteResponse = subject.route(httpRequest).toString();
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
     }
