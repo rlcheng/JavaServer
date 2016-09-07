@@ -1,4 +1,4 @@
-package com.richardcheng.endpoint;
+package com.richardcheng.FileHelper;
 
 import java.io.*;
 
@@ -9,10 +9,26 @@ public class FileReadHelper {
     private int stop = 0;
     private int size;
 
-    public FileReadHelper(String path) {
-        this.file = new File(path);
+    public FileReadHelper(File file) {
+        this.file = file;
         fileSize = (int)(long)file.length();
         size = fileSize;
+    }
+
+    public int getFileSize() {
+        return fileSize;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public int getStop() {
+        return stop;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public void parseRange(String range) {
@@ -34,33 +50,10 @@ public class FileReadHelper {
         size = stop - start + 1;
     }
 
-    public String read() {
-        BufferedReader bufferedReader;
-
-        char[] charBuffer = new char[size];
-
-        try {
-            bufferedReader = new BufferedReader(new FileReader(file));
-
-            bufferedReader.skip(start);
-            bufferedReader.read(charBuffer, 0, size);
-
-            bufferedReader.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return new String(charBuffer);
-    }
-
-    public byte[] readBytes() {
-        FileInputStream fileInputStream;
+    public byte[] readBytes(FileInputStream fileInputStream) {
         byte[] content = new byte[size];
 
         try {
-            fileInputStream = new FileInputStream(file);
-
             fileInputStream.skip(start);
             fileInputStream.read(content);
 

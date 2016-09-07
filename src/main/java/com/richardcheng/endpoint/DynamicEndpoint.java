@@ -1,8 +1,13 @@
 package com.richardcheng.endpoint;
 
+import com.richardcheng.FileHelper.FileReadHelper;
+import com.richardcheng.FileHelper.FileWriteHelper;
 import com.richardcheng.httpIO.HttpRequest;
 import com.richardcheng.httpIO.HttpResponse;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 
@@ -73,13 +78,21 @@ public class DynamicEndpoint implements IEndpoint {
             return httpResponse.statusLine("405").getBytes();
         }
 
-        FileReadHelper fileReadHelper = new FileReadHelper(path + fileName);
+        FileReadHelper fileReadHelper = new FileReadHelper(new File(path + fileName));
         if (httpRequest.getRange().length() > 0) {
             statusCode = "206";
             fileReadHelper.parseRange(httpRequest.getRange());
             httpRequest.resetRange();
         }
-        byte[] contentBytes = fileReadHelper.readBytes();
+
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(path + fileName);
+        } catch(FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        byte[] contentBytes = fileReadHelper.readBytes(fileInputStream);
 
         if (isText) {
             message = new String(contentBytes);
