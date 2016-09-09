@@ -1,5 +1,6 @@
 package com.richardcheng.httpIO;
 
+import com.richardcheng.httpIO.mock.MockHttpRequestRange;
 import com.richardcheng.javaserver.mock.MockBufferReaderThrowsException;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -121,6 +122,25 @@ public class HttpRequestTest {
     }
 
     @Test
+    public void parseMessage_endpointWithParameter() {
+        String expectedEndpoint = "parameters";
+        String expectedParameter = "?variable_1=stuff";
+        String stream = "GET /parameters?variable_1=stuff HTTP/1.1\r\n\r\n";
+        BufferedReader request = new BufferedReader(
+                new InputStreamReader(
+                        new ByteArrayInputStream(
+                                stream.getBytes(StandardCharsets.UTF_8))));
+        HttpRequest httpRequest = new HttpRequest();
+
+        httpRequest.parseMessage(request);
+        String actualParameter = httpRequest.getParameters();
+        String actualEndpoint = httpRequest.getEndpoint();
+
+        Assert.assertEquals(expectedParameter, actualParameter);
+        Assert.assertEquals(expectedEndpoint, actualEndpoint);
+    }
+
+    @Test
     public void parseMessage_throwsException() {
         MockBufferReaderThrowsException request = new MockBufferReaderThrowsException(
                 new InputStreamReader(
@@ -145,5 +165,16 @@ public class HttpRequestTest {
         String actualLog = httpRequest.getLog();
 
         Assert.assertEquals(expectedLog, actualLog);
+    }
+
+    @Test
+    public void resetRange_resets_range_to_emptyString() {
+        MockHttpRequestRange subject = new MockHttpRequestRange();
+        subject.setRange("100");
+        String expectedResult = "";
+
+        subject.resetRange();
+
+        Assert.assertEquals(expectedResult, subject.getRange());
     }
 }

@@ -109,4 +109,16 @@ public class HttpResponseTest {
 
         Assert.assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void imageHeaderResponse_Returns_StatusLine_ImageEntityHeader() {
+        MockHttpResponse subject = new MockHttpResponse();
+        String expectedResult = "HTTP/1.1 200 OK\r\n" +
+                "Content-Type: image/gif\r\nContent-Length: 11\r\n" +
+                "\r\n";
+
+        String actualResult = subject.imageHeaderResponse("200", "gif", 11);
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
 }

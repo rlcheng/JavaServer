@@ -1,4 +1,4 @@
-package com.richardcheng.endpoint;
+package com.richardcheng.FileHelper;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,6 +20,7 @@ public class FileWriteHelper {
             out.close();
         }
         catch (IOException e){
+            throw new RuntimeException(e);
         }
     }
 }
