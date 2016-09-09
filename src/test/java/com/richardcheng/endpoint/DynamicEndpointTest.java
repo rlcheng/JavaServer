@@ -1,7 +1,6 @@
 package com.richardcheng.endpoint;
 
-import com.richardcheng.endpoint.mock.MockHttpRequestPut;
-import com.richardcheng.endpoint.mock.MockHttpResponsePartial;
+import com.richardcheng.endpoint.mock.*;
 import com.richardcheng.httpIO.mock.MockHttpResponse;
 import org.junit.Assert;
 import org.junit.Test;
@@ -82,5 +81,65 @@ public class DynamicEndpointTest {
         String actualRouteResponse = new String(byteArray);
 
         Assert.assertEquals(expectedRouteResponse, actualRouteResponse);
+    }
+
+    @Test
+    public void route_Returns206_partialContent() {
+        MockHttpRequestGet httpRequest = new MockHttpRequestGet();
+        String endpoint = "partial_content.txt";
+        LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
+        directoryList.put("partial_content.txt", 1);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, "path", new MockFileReadHelper(), null);
+        subject.match(endpoint);
+
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
+
+        Assert.assertTrue(actualRouteResponse.contains("HTTP/1.1 206 Partial Content"));
+    }
+
+    @Test
+    public void route_Returns200_getTextFile() {
+        MockHttpRequestGetOnly httpRequest = new MockHttpRequestGetOnly();
+        String endpoint = "file1";
+        LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
+        directoryList.put("file1", 1);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, "path", new MockFileReadHelper(), null);
+        subject.match(endpoint);
+
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
+
+        Assert.assertTrue(actualRouteResponse.contains("HTTP/1.1 200 OK"));
+    }
+
+    @Test
+    public void route_Returns200_getImageFile() {
+        MockHttpRequestGetOnly httpRequest = new MockHttpRequestGetOnly();
+        String endpoint = "image.png";
+        LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
+        directoryList.put("image.png", 1);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, "path", new MockFileReadHelper(), null);
+
+        subject.match(endpoint);
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
+
+        Assert.assertTrue(actualRouteResponse.contains("HTTP/1.1 200 OK"));
+    }
+
+    @Test
+    public void route_Etag_noMatch() {
+        MockHttpRequestGetEtag httpRequest = new MockHttpRequestGetEtag();
+        String endpoint = "file1";
+        LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
+        directoryList.put("file1", 1);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, "path", new MockFileReadHelper(), new MockFileWriteHelper());
+
+        subject.match(endpoint);
+        byte[] byteArray = subject.route(httpRequest);
+        String actualRouteResponse = new String(byteArray);
+
+        Assert.assertTrue(actualRouteResponse.contains("HTTP/1.1 200 OK"));
     }
 }

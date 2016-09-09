@@ -5,8 +5,8 @@ import java.io.*;
 public class FileReadHelper {
     private File file;
     private int fileSize;
-    private int start = 0;
-    private int stop = 0;
+    private int start;
+    private int stop;
     private int readSize;
     private FileInputStream fileInputStream;
 
@@ -17,6 +17,8 @@ public class FileReadHelper {
         file = new File(fullPath);
         fileSize = (int)(long)file.length();
         readSize = fileSize;
+        start = 0;
+        stop = 0;
 
         try {
             fileInputStream = new FileInputStream(file);

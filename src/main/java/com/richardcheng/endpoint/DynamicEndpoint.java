@@ -83,7 +83,6 @@ public class DynamicEndpoint implements IEndpoint {
             return httpResponse.statusLine("405").getBytes();
         }
 
-        FileReadHelper fileReadHelper = new FileReadHelper();
         fileReadHelper.init(path + fileName);
         if (httpRequest.getRange().length() > 0) {
             statusCode = "206";
