@@ -16,7 +16,7 @@ public class DynamicEndpointTest {
         directoryList.put("file1", 1);
         directoryList.put("image.png", 1);
         directoryList.put("partial_content.txt", 1);
-        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, null);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, null, null, null);
 
         boolean actual = subject.match(endpoint);
 
@@ -30,7 +30,7 @@ public class DynamicEndpointTest {
         directoryList.put("file1", 1);
         directoryList.put("image.png", 1);
         directoryList.put("partial_content.txt", 1);
-        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, null);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, null, null, null);
 
         boolean actual = subject.match(endpoint);
 
@@ -44,7 +44,7 @@ public class DynamicEndpointTest {
         directoryList.put("file1", 1);
         directoryList.put("image.png", 1);
         directoryList.put("partial_content.txt", 1);
-        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, null);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, null, null, null);
 
         boolean actual = subject.match(endpoint);
 
@@ -58,7 +58,7 @@ public class DynamicEndpointTest {
         String endpoint = "notGoingtoMatch";
         LinkedHashMap<String, Object> directoryList = new LinkedHashMap<>();
         directoryList.put("file1", 1);
-        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponse(), directoryList, null);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponse(), directoryList, null, null, null);
 
         boolean actual = subject.match(endpoint);
 
@@ -73,8 +73,7 @@ public class DynamicEndpointTest {
         directoryList.put("file1", 1);
         directoryList.put("image.png", 1);
         directoryList.put("partial_content.txt", 1);
-        String path = "path";
-        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, path);
+        DynamicEndpoint subject = new DynamicEndpoint(new MockHttpResponsePartial(), directoryList, null, null, null);
         String expectedRouteResponse = "HTTP/1.1 405 Method Not Allowed\r\n";
 
         subject.match(endpoint);

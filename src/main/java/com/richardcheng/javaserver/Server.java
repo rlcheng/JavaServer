@@ -1,5 +1,7 @@
 package com.richardcheng.javaserver;
 
+import com.richardcheng.FileHelper.FileReadHelper;
+import com.richardcheng.FileHelper.FileWriteHelper;
 import com.richardcheng.endpoint.*;
 import com.richardcheng.httpIO.HttpRequest;
 import com.richardcheng.httpIO.HttpResponse;
@@ -36,7 +38,7 @@ public class Server {
             new RedirectEndpoint(new HttpResponse(), serverArgs.port()),
             new LogsEndpoint(new HttpResponse()),
             new ParametersEndpoint(new HttpResponse()),
-            new DynamicEndpoint(new HttpResponse(), directoryList, serverArgs.path()),
+            new DynamicEndpoint(new HttpResponse(), directoryList, serverArgs.path(), new FileReadHelper(), new FileWriteHelper()),
             new InvalidEndpoint(new HttpResponse()) };
 
         Controller controller = new Controller(endpoints);

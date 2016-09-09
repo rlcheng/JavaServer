@@ -15,92 +15,102 @@ public class FileReadHelperTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void verifyInitialization() {
-        MockFile mockFile = new MockFile("path");
+    public void init_setsFile_andsetSizes() {
+        String path = System.getProperty("user.dir") + "/README.md";
+        FileReadHelper subject = new FileReadHelper();
 
-        FileReadHelper subject = new FileReadHelper(mockFile);
+        subject.init(path);
 
-        Assert.assertEquals(10, subject.getFileSize());
-        Assert.assertEquals(10, subject.getSize());
+        Assert.assertEquals(subject.getReadSize(), subject.getFileSize());
+    }
+
+    @Test
+    public void initFile_throwsException_whenFileNotFound() {
+        FileReadHelper subject = new FileReadHelper();
+
+        thrown.expect(RuntimeException.class);
+        subject.init("IDontExist.txt");
     }
 
     @Test
     public void parseRange_rangeEndsWithDash() {
         String testRange = "2-";
-        MockFile mockFile = new MockFile("path");
-        FileReadHelper subject = new FileReadHelper(mockFile);
+        FileReadHelper subject = new FileReadHelper();
+        subject.setFileSize(10);
         int expectedStart = 2;
         int expectedStop = 9;
-        int expectedSize = 8;
+        int expectedReadSize = 8;
 
         subject.parseRange(testRange);
 
         Assert.assertEquals(expectedStart, subject.getStart());
         Assert.assertEquals(expectedStop, subject.getStop());
-        Assert.assertEquals(expectedSize, subject.getSize());
+        Assert.assertEquals(expectedReadSize, subject.getReadSize());
     }
 
     @Test
     public void parseRange_rangeStartsWithDash() {
         String testRange = "-4";
-        MockFile mockFile = new MockFile("path");
-        FileReadHelper subject = new FileReadHelper(mockFile);
+        FileReadHelper subject = new FileReadHelper();
+        subject.setFileSize(10);
         int expectedStart = 6;
         int expectedStop = 9;
-        int expectedSize = 4;
+        int expectedReadSize = 4;
 
         subject.parseRange(testRange);
 
         Assert.assertEquals(expectedStart, subject.getStart());
         Assert.assertEquals(expectedStop, subject.getStop());
-        Assert.assertEquals(expectedSize, subject.getSize());
+        Assert.assertEquals(expectedReadSize, subject.getReadSize());
     }
 
     @Test
     public void parseRange_rangeContainsDash() {
         String testRange = "1-4";
-        MockFile mockFile = new MockFile("path");
-        FileReadHelper subject = new FileReadHelper(mockFile);
+        FileReadHelper subject = new FileReadHelper();
+        subject.setFileSize(10);
         int expectedStart = 1;
         int expectedStop = 4;
-        int expectedSize = 4;
+        int expectedReadSize = 4;
 
         subject.parseRange(testRange);
 
         Assert.assertEquals(expectedStart, subject.getStart());
         Assert.assertEquals(expectedStop, subject.getStop());
-        Assert.assertEquals(expectedSize, subject.getSize());
+        Assert.assertEquals(expectedReadSize, subject.getReadSize());
     }
 
     @Test
     public void parseRange_rangeNoDash() {
         String testRange = "4";
-        MockFile mockFile = new MockFile("path");
-        FileReadHelper subject = new FileReadHelper(mockFile);
+        FileReadHelper subject = new FileReadHelper();
+        subject.setFileSize(10);
         int expectedStart = 4;
         int expectedStop = 9;
-        int expectedSize = 6;
+        int expectedReadSize = 6;
 
         subject.parseRange(testRange);
 
         Assert.assertEquals(expectedStart, subject.getStart());
         Assert.assertEquals(expectedStop, subject.getStop());
-        Assert.assertEquals(expectedSize, subject.getSize());
+        Assert.assertEquals(expectedReadSize, subject.getReadSize());
     }
 
     @Test
     public void readbytes_ReturnsContentsOfMockFile() {
-        String currentDirectory = System.getProperty("user.dir");
-        MockFile mockFile = new MockFile(currentDirectory + "/README.md");
-        FileReadHelper subject = new FileReadHelper(mockFile);
+        String path = System.getProperty("user.dir") + "/README.md";
+        MockFile mockFile = new MockFile(path);
         MockFileInputStream mockFileInputStream = null;
         try{
             mockFileInputStream = new MockFileInputStream(mockFile);
         } catch(FileNotFoundException e){
         }
+        FileReadHelper subject = new FileReadHelper();
+        subject.setFileInputStream(mockFileInputStream);
+        subject.setStop(1);
+        subject.setReadSize(2);
 
-        subject.parseRange("0-1");
-        byte[] actualContent = subject.readBytes(mockFileInputStream);
+        byte[] actualContent = subject.readBytes();
         String contentString = new String(actualContent);
 
         Assert.assertEquals(2, actualContent.length);
@@ -109,17 +119,18 @@ public class FileReadHelperTest {
 
     @Test
     public void readBytes_ThrowsException() {
-        String currentDirectory = System.getProperty("user.dir");
-        MockFile mockFile = new MockFile(currentDirectory + "/README.md");
-        FileReadHelper subject = new FileReadHelper(mockFile);
+        String path = System.getProperty("user.dir") + "/README.md";
+        MockFile mockFile = new MockFile(path);
         MockFileInputStreamThrowIOException mockFileInputStreamThrowIOException = null;
         try{
             mockFileInputStreamThrowIOException = new MockFileInputStreamThrowIOException(mockFile);
         } catch(FileNotFoundException e){
         }
-        subject.parseRange("0-1");
+        FileReadHelper subject = new FileReadHelper();
+        subject.setFileInputStream(mockFileInputStreamThrowIOException);
+        subject.setReadSize(2);
 
         thrown.expect(RuntimeException.class);
-        byte[] actualContent = subject.readBytes(mockFileInputStreamThrowIOException);
+        subject.readBytes();
     }
 }

@@ -5,9 +5,6 @@ import com.richardcheng.FileHelper.FileWriteHelper;
 import com.richardcheng.httpIO.HttpRequest;
 import com.richardcheng.httpIO.HttpResponse;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 
@@ -15,6 +12,8 @@ public class DynamicEndpoint implements IEndpoint {
     private HttpResponse httpResponse;
     private LinkedHashMap<String, Object> directoryList;
     private String path;
+    private FileReadHelper fileReadHelper;
+    private FileWriteHelper fileWriteHelper;
     private String fileName;
     private Hashtable<String, String> allowedMethods;
     private Hashtable<String, String> imageAllowedMethods;
@@ -23,10 +22,16 @@ public class DynamicEndpoint implements IEndpoint {
     private String fileType;
     private boolean isText;
 
-    public DynamicEndpoint (HttpResponse httpResponse, LinkedHashMap<String, Object> directoryList, String path) {
+    public DynamicEndpoint (HttpResponse httpResponse,
+                            LinkedHashMap<String, Object> directoryList,
+                            String path,
+                            FileReadHelper fileReadHelper,
+                            FileWriteHelper fileWriteHelper) {
         this.httpResponse = httpResponse;
         this.directoryList = directoryList;
         this.path = path;
+        this.fileReadHelper = fileReadHelper;
+        this.fileWriteHelper = fileWriteHelper;
 
         imageAllowedMethods = new Hashtable<>();
         imageAllowedMethods.put("GET", "200");
@@ -78,21 +83,15 @@ public class DynamicEndpoint implements IEndpoint {
             return httpResponse.statusLine("405").getBytes();
         }
 
-        FileReadHelper fileReadHelper = new FileReadHelper(new File(path + fileName));
+        FileReadHelper fileReadHelper = new FileReadHelper();
+        fileReadHelper.init(path + fileName);
         if (httpRequest.getRange().length() > 0) {
             statusCode = "206";
             fileReadHelper.parseRange(httpRequest.getRange());
             httpRequest.resetRange();
         }
 
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(path + fileName);
-        } catch(FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        byte[] contentBytes = fileReadHelper.readBytes(fileInputStream);
+        byte[] contentBytes = fileReadHelper.readBytes();
 
         if (isText) {
             message = new String(contentBytes);
@@ -108,7 +107,8 @@ public class DynamicEndpoint implements IEndpoint {
             encodedMessage = new SHAEncoder().encode(message, "SHA1");
 
             if (encodedMessage.equals(httpRequest.getEtag())) {
-                new FileWriteHelper(path + fileName).write(httpRequest.getData());
+                fileWriteHelper.init(path + fileName);
+                fileWriteHelper.write(httpRequest.getData());
                 return httpResponse.statusLine(statusCode).getBytes();
             }
         }
