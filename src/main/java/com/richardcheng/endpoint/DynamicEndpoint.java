@@ -76,8 +76,7 @@ public class DynamicEndpoint implements IEndpoint {
     public byte[] route(HttpRequest httpRequest) {
         String httpMethod = httpRequest.getMethod();
         String statusCode = allowedMethods.get(httpMethod);
-        String message = "";
-        String encodedMessage = "";
+        String message;
 
         if (statusCode == null) {
             return httpResponse.statusLine("405").getBytes();
@@ -103,7 +102,7 @@ public class DynamicEndpoint implements IEndpoint {
         }
 
         if (httpRequest.getEtag().length() > 0) {
-            encodedMessage = new SHAEncoder().encode(message, "SHA1");
+            String encodedMessage = new SHAEncoder().encode(message, "SHA1");
 
             if (encodedMessage.equals(httpRequest.getEtag())) {
                 fileWriteHelper.init(path + fileName);

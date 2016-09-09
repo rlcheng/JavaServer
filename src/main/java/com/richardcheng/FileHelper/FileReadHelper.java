@@ -28,19 +28,16 @@ public class FileReadHelper {
     }
 
     public void parseRange(String range) {
-        String[] parsedRange = range.split("-");
+        String[] splitRange = range.split("-");
 
-        if (range.endsWith("-")) {
-            start = Integer.parseInt(parsedRange[0]);
+        if (range.startsWith("-")) {
+            start = fileSize - Integer.parseInt(splitRange[1]);
             stop = fileSize - 1;
-        } else if (range.startsWith("-")) {
-            start = fileSize - Integer.parseInt(parsedRange[1]);
-            stop = fileSize - 1;
-        } else if (range.contains("-")){
-            start = Integer.parseInt(parsedRange[0]);
-            stop = Integer.parseInt(parsedRange[1]);
+        } else if (range.contains("-") && !range.endsWith("-")){
+            start = Integer.parseInt(splitRange[0]);
+            stop = Integer.parseInt(splitRange[1]);
         } else {
-            start = Integer.parseInt(parsedRange[0]);
+            start = Integer.parseInt(splitRange[0]);
             stop = fileSize - 1;
         }
         readSize = stop - start + 1;
