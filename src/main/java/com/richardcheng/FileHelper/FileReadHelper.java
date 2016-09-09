@@ -5,30 +5,26 @@ import java.io.*;
 public class FileReadHelper {
     private File file;
     private int fileSize;
-    private int start = 0;
-    private int stop = 0;
-    private int size;
+    private int start;
+    private int stop;
+    private int readSize;
+    private FileInputStream fileInputStream;
 
-    public FileReadHelper(File file) {
-        this.file = file;
+    public FileReadHelper() {
+    }
+
+    public void init(String fullPath) {
+        file = new File(fullPath);
         fileSize = (int)(long)file.length();
-        size = fileSize;
-    }
+        readSize = fileSize;
+        start = 0;
+        stop = 0;
 
-    public int getFileSize() {
-        return fileSize;
-    }
-
-    public int getStart() {
-        return start;
-    }
-
-    public int getStop() {
-        return stop;
-    }
-
-    public int getSize() {
-        return size;
+        try {
+            fileInputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException();
+        }
     }
 
     public void parseRange(String range) {
@@ -47,11 +43,11 @@ public class FileReadHelper {
             start = Integer.parseInt(parsedRange[0]);
             stop = fileSize - 1;
         }
-        size = stop - start + 1;
+        readSize = stop - start + 1;
     }
 
-    public byte[] readBytes(FileInputStream fileInputStream) {
-        byte[] content = new byte[size];
+    public byte[] readBytes() {
+        byte[] content = new byte[readSize];
 
         try {
             fileInputStream.skip(start);
@@ -64,5 +60,37 @@ public class FileReadHelper {
         }
 
         return content;
+    }
+
+    public void setFileInputStream(FileInputStream fileInputStream) {
+        this.fileInputStream = fileInputStream;
+    }
+
+    public void setFileSize(int fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public void setReadSize(int readSize) {
+        this.readSize = readSize;
+    }
+
+    public void setStop(int stop) {
+        this.stop = stop;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public int getStop() {
+        return stop;
+    }
+
+    public int getReadSize() {
+        return readSize;
+    }
+
+    public int getFileSize() {
+        return fileSize;
     }
 }
