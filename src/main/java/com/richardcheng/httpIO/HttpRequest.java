@@ -64,8 +64,7 @@ public class HttpRequest {
 
         if (path.length == 0) {
             endpoint = "root";
-        }
-        else {
+        } else {
             endpoint = path[1];
             setParameter();
         }
