@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.Base64;
 
 public class HttpRequest {
-    private String method;
-    private String uri;
-    private String version;
-    private String endpoint;
+    private String method = "";
+    private String uri = "";
+    private String version = "";
+    private String endpoint = "";
     private String data;
     private String log = "";
     private String auth = "";
@@ -16,9 +16,15 @@ public class HttpRequest {
     private String parameters = "";
     private String etag = "";
 
-    public void parseMessage(BufferedReader requestMessage) {
+    public boolean parseMessage(BufferedReader requestMessage) {
         try {
-            parseRequest(requestMessage.readLine());
+            String firstLine = requestMessage.readLine();
+
+            if (firstLine == null) {
+                return false;
+            }
+
+            parseRequest(firstLine);
 
             int size = 0;
 
@@ -48,6 +54,8 @@ public class HttpRequest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        return true;
     }
 
     private void parseRequest(String request) {
