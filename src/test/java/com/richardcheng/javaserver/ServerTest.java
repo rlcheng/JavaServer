@@ -33,6 +33,26 @@ public class ServerTest {
     }
 
     @Test
+    public void run_LoopsThrough_IfAcceptMethodGood_RequestFails_andSkipsResponse() {
+        MockServerSocket mockServerSocket;
+        try {
+            mockServerSocket = new MockServerSocket();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+        MockController mockController = new MockController(null);
+        MockHttpRequestReturnFalse mockHttpRequest = new MockHttpRequestReturnFalse();
+        Server subject = new Server(new ShouldLoop10Times(), mockServerSocket, mockController, mockHttpRequest);
+        int port = 5000;
+
+        subject.run(port);
+
+        Assert.assertTrue(mockServerSocket.setReuseAddressCalled);
+        Assert.assertTrue(mockServerSocket.bindCalled);
+        Assert.assertFalse(mockHttpRequest.requestParsed);
+    }
+
+    @Test
     public void run_serverSocket_bind_throwsException() {
         MockServerSocketBindThrowsException mockServerSocket;
         try {

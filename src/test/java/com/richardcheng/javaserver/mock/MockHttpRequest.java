@@ -7,8 +7,10 @@ import java.io.BufferedReader;
 public class MockHttpRequest extends HttpRequest {
     public boolean requestParsed;
 
-    public void parseMessage(BufferedReader requestMessage) {
+    public boolean parseMessage(BufferedReader requestMessage) {
         requestParsed = true;
+
+        return true;
     }
 
     public String getMethod() {

@@ -69,10 +69,13 @@ public class Server {
             serverSocket.bind(new InetSocketAddress(port));
             while (serverRunShouldLoop.shouldLoop()) {
                 Socket requestSocket = serverSocket.accept();
-                this.request(requestSocket);
-                this.response(requestSocket);
+                boolean requestResult = this.request(requestSocket);
+                if (requestResult) {
+                    this.response(requestSocket);
+                }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("something went wrong");
         } finally {
             this.stop();
@@ -87,7 +90,7 @@ public class Server {
         }
     }
 
-    private void request(Socket requestSocket) {
+    private boolean request(Socket requestSocket) {
         BufferedReader requestMessage;
 
         try {
@@ -96,7 +99,7 @@ public class Server {
             throw new RuntimeException(e);
         }
 
-        request.parseMessage(requestMessage);
+        return request.parseMessage(requestMessage);
     }
 
     private void response(Socket requestSocket) {

@@ -18,7 +18,20 @@ public class HttpRequestTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void parseMessage_ParseRequest_And_ForwardSlash_AsRootEndpoint() {
+    public void parseMessage_ReturnsFalse_whenInputStreamEmpty() {
+        BufferedReader request = new BufferedReader(
+                new InputStreamReader(
+                        new ByteArrayInputStream(
+                                "".getBytes(StandardCharsets.UTF_8))));
+        HttpRequest httpRequest = new HttpRequest();
+
+        boolean actualMethodReturn = httpRequest.parseMessage(request);
+
+        Assert.assertFalse(actualMethodReturn);
+    }
+
+    @Test
+    public void parseMessage_ParseRequest_And_ForwardSlash_AsRootEndpoint_andReturnsTrue() {
         BufferedReader request = new BufferedReader(
                 new InputStreamReader(
                         new ByteArrayInputStream(
@@ -29,12 +42,13 @@ public class HttpRequestTest {
         String expectedVersion = "HTTP/1.1";
         String expectedEndpoint = "root";
 
-        httpRequest.parseMessage(request);
+        boolean actualMethodReturn = httpRequest.parseMessage(request);
 
         Assert.assertEquals(expectedMethod, httpRequest.getMethod());
         Assert.assertEquals(expectedUri, httpRequest.getUri());
         Assert.assertEquals(expectedVersion, httpRequest.getVersion());
         Assert.assertEquals(expectedEndpoint, httpRequest.getEndpoint());
+        Assert.assertTrue(actualMethodReturn);
     }
 
     @Test
@@ -49,12 +63,13 @@ public class HttpRequestTest {
         String expectedVersion = "HTTP/1.1";
         String expectedEndpoint = "form";
 
-        httpRequest.parseMessage(request);
+        boolean actualMethodReturn = httpRequest.parseMessage(request);
 
         Assert.assertEquals(expectedMethod, httpRequest.getMethod());
         Assert.assertEquals(expectedUri, httpRequest.getUri());
         Assert.assertEquals(expectedVersion, httpRequest.getVersion());
         Assert.assertEquals(expectedEndpoint, httpRequest.getEndpoint());
+        Assert.assertTrue(actualMethodReturn);
     }
 
     @Test
@@ -66,10 +81,11 @@ public class HttpRequestTest {
         String expectedData = "data=garfield";
         HttpRequest httpRequest = new HttpRequest();
 
-        httpRequest.parseMessage(request);
+        boolean actualMethodReturn = httpRequest.parseMessage(request);
         String actualData = httpRequest.getData();
 
         Assert.assertEquals(expectedData, actualData);
+        Assert.assertTrue(actualMethodReturn);
     }
 
     @Test
@@ -83,10 +99,11 @@ public class HttpRequestTest {
                                 stream.getBytes(StandardCharsets.UTF_8))));
         HttpRequest httpRequest = new HttpRequest();
 
-        httpRequest.parseMessage(request);
+        boolean actualMethodReturn = httpRequest.parseMessage(request);
         String actualAuth = httpRequest.getAuth();
 
         Assert.assertEquals(expectedAuth, actualAuth);
+        Assert.assertTrue(actualMethodReturn);
     }
 
     @Test
@@ -99,10 +116,11 @@ public class HttpRequestTest {
                                 stream.getBytes(StandardCharsets.UTF_8))));
         HttpRequest httpRequest = new HttpRequest();
 
-        httpRequest.parseMessage(request);
+        boolean actualMethodReturn = httpRequest.parseMessage(request);
         String actualRange = httpRequest.getRange();
 
         Assert.assertEquals(expectedRange, actualRange);
+        Assert.assertTrue(actualMethodReturn);
     }
 
     @Test
@@ -115,10 +133,11 @@ public class HttpRequestTest {
                                 stream.getBytes(StandardCharsets.UTF_8))));
         HttpRequest httpRequest = new HttpRequest();
 
-        httpRequest.parseMessage(request);
+        boolean actualMethodReturn = httpRequest.parseMessage(request);
         String actualEtag = httpRequest.getEtag();
 
         Assert.assertEquals(expectedEtag, actualEtag);
+        Assert.assertTrue(actualMethodReturn);
     }
 
     @Test
